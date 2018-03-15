@@ -1,0 +1,51 @@
+/**
+ * A raerkezo vagy onnan tavozo Thing-nek jelzi,
+ * hogy egy kapcsolot erintett a mozgas. Ha
+ * megvaltoztatjak az allapotat, azt jelzi a hozzatartozo
+ * HiddenHole-nak.
+ */
+public class Switch extends Field {
+    private HiddenHole hiddenHole;
+
+    public Switch(HiddenHole hiddenHole) {
+        Main.functionCalled("Switch");
+
+        this.hiddenHole = hiddenHole;
+
+        Main.functionReturned("Switch", "Switch");
+    }
+
+    /**
+     * Megvizsgalja, hogy van-e lehetoseg a parameterul kapott “t” Thing befogadasara, melynek mozgasiranya “d” Direction. Ha a befogadas sikeres volt, akkor meghivja rajta a enterOrLeaveSwitch() fuggvenyt es true-val ter vissza, egyebkent false-al ter vissza.
+     * @param t befogadando valami
+     * @param d ameyik iranyba mozog a valami
+     * @return
+     */
+    @Override
+    public boolean accept(Thing t, Direction d) {
+        Main.functionCalled("Switch.accept");
+
+        if(containedThing == null) {
+            containedThing = t;
+
+            if(t != null)
+                t.enterOrLeaveSwitch(this);
+
+            Main.functionReturned("Switch.accept", "true");
+            return true;
+        }
+
+        Field n = this.neighbor.get(d);
+        boolean moveAccepted = containedThing.moveToField(n);
+
+        if(moveAccepted) {
+            containedThing = t;
+
+            if(t != null)
+                t.enterOrLeaveSwitch(this);
+        }
+
+        Main.functionReturned("Switch.accept", moveAccepted?"true":"false");
+        return moveAccepted;
+    }
+}
