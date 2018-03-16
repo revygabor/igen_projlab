@@ -36,7 +36,7 @@ public class Switch extends Field {
         }
 
         Field n = this.neighbor.get(d);
-        boolean moveAccepted = containedThing.moveToField(n);
+        boolean moveAccepted = containedThing.moveToField(n, d);
 
         if(moveAccepted) {
             containedThing = t;

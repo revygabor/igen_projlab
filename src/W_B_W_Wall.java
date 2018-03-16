@@ -1,6 +1,6 @@
 public class W_B_W_Wall implements UseCase {
 
-    Thing w;
+    Worker w;
     Thing w2;
     Field f1;
     Field neighbor1;

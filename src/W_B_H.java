@@ -1,6 +1,6 @@
 public class W_B_H implements UseCase {
 
-    Thing w;
+    Worker w;
     Thing b1;
     Field f1;
     Field neighbor;

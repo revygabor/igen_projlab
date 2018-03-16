@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
  * a Thinkeget a megfelelő fieldre mozgatja
  */
 public class W_B_B_F implements UseCase {
-    Thing w;
+    Worker w;
     Field f1;
     Field neighbor1;
     Field neighbor2;
