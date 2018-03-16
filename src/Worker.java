@@ -2,7 +2,7 @@ public class Worker extends Thing {
     int score = 0;
 
     @Override
-    public void SignalScore() {
+    public void signalScore() {
         Main.functionCalled("Worker.signalScore");
         score++;
         Main.functionReturned("Worker.signalScore", "");
