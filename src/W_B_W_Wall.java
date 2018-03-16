@@ -23,7 +23,7 @@ public class W_B_W_Wall implements UseCase {
         neighbor2 = new Floor();
         wall = new Obstacle();
         b = new Box();
-        wh = new Warehouse();
+        wh = Warehouse.getInstance();
 
         f1.setNeighbour(Direction.RIGHT, neighbor1);
         neighbor1.setNeighbour(Direction.RIGHT, neighbor2);

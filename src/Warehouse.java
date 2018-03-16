@@ -7,6 +7,16 @@ public class Warehouse {
         Main.functionReturned("Warehouse.DecreaseLivingWorkers", "");
     }
 
+    public void init() {
+        Main.functionCalled("Warehouse.init");
+        Main.functionReturned("Warehouse.init", "");
+    }
+
+    public void checkEndGame() {
+        Main.functionCalled("Warehouse.checkEndGame");
+        Main.functionReturned("Warehouse.checkEndGame", "");
+    }
+
     static Warehouse getInstance() {
         return instance;
     }
