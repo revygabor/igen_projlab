@@ -2,7 +2,7 @@ public abstract class Thing {
 
     protected Field field;
 
-    public abstract void SignalScore();
+    public abstract void signalScore();
 
     public abstract boolean pushOtherThing(Thing t, Direction direction);
 
