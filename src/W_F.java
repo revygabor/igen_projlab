@@ -1,0 +1,29 @@
+﻿public class W_F implements UseCase{
+    Worker w;
+    Field f1;
+    Field neighbor;
+	
+    /**
+     * Inicializalja  a teszt esetet.
+     * Letrehozza a valtozokat,
+     * beallitja a szukseges szomszedsagokat,
+     * a Thinkeget a megfelelo fieldre mozgatja
+     */
+    public W_F() {
+	    w = new Worker();
+	    f1 = new Floor();
+	    neighbor = new Floor();
+	        
+        f1.setNeighbor(Direction.UP, neighbor);
+	        
+        w.moveToField(f1, null);
+    }
+
+    /**
+     * Elinditja a tesztet.
+     */
+    @Override
+    public void start() {
+        w.move(Direction.UP);
+    }
+}
