@@ -1,11 +1,11 @@
 public class W_B_W_Wall implements UseCase {
 
     Worker w;
-    Thing w2;
+    Worker w2;
     Field f1;
     Field neighbor1;
     Field neighbor2;
-    Thing b;
+    Box b;
     Obstacle wall;
     Warehouse wh;
 

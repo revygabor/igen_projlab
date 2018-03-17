@@ -1,7 +1,7 @@
 public class W_B_H implements UseCase {
 
     Worker w;
-    Thing b1;
+    Box b1;
     Field f1;
     Field neighbor;
 
@@ -17,7 +17,7 @@ public class W_B_H implements UseCase {
         f1 = new Floor();
         neighbor = new Hole();
 
-        f1.setNeighbour(Direction.UP, neighbor);
+        f1.setNeighbour(Direction.RIGHT, neighbor);
         b1.moveToField(f1, null);
     }
 

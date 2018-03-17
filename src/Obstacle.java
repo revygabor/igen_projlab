@@ -11,6 +11,8 @@ public class Obstacle extends Field {
      */
     @Override
     public boolean accept(Thing t, Direction d) {
+        Main.functionCalled("Obstacle.accept");
+        Main.functionReturned("Obstacle.accept", "false");
         return false;
     }
 }

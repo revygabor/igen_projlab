@@ -48,6 +48,7 @@ public abstract class Thing {
     public boolean moveToField(Field targetField, Direction d) {
         Main.functionCalled("Thing.moveToField");
         boolean accepted = targetField.accept(this, d);
+        if(accepted) field = targetField;
         Main.functionReturned("Thing.moveToField", String.valueOf(accepted));
         return accepted;
     }
