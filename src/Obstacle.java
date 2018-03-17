@@ -3,6 +3,12 @@
  * Semmit sem enged magara lepni.
  */
 public class Obstacle extends Field {
+    public Obstacle() {
+        Main.functionCalled("Obstacle");
+
+        Main.functionReturned("Obstacle", "Obstacle");
+    }
+
     /**
      * Visszateresi erteke mindig false.
      * @param t befogadando valami
