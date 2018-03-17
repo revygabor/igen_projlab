@@ -13,7 +13,8 @@ public class Hole extends Field {
     public boolean accept(Thing t, Direction d) {
         Main.functionCalled("Hole.accept");
 
-        t.die();
+        if(t!=null)
+            t.die();
 
         Main.functionReturned("Hole.accept", "true");
         return true;

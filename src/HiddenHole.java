@@ -69,7 +69,6 @@ public class HiddenHole extends Field {
         activeComponent.containedThing = null;
         activeComponent = newActiveComponent;
 
-
         Main.functionReturned("signalSwitch", "void");
     }
 

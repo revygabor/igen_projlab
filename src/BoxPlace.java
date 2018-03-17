@@ -28,7 +28,7 @@ public class BoxPlace extends Floor {
            return false;
         }
 
-        if(containedThing == null) {
+        if(containedThing == null || d == null) {
             containedThing = t;
 
             if(t != null)
@@ -38,8 +38,8 @@ public class BoxPlace extends Floor {
             return true;
         }
 
-        Field f = neighbor.get(d);
-        boolean moveAccepted = containedThing.moveToField(f, d);
+        Field n = neighbor.get(d);
+        boolean moveAccepted = containedThing.moveToField(n, d);
 
         if(moveAccepted) {
             containedThing = t;

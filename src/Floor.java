@@ -23,7 +23,7 @@ public class Floor extends Field {
     public boolean accept(Thing t, Direction d) {
         Main.functionCalled("accept");
 
-        if(containedThing == null) {
+        if(containedThing == null || d == null) {
             containedThing = t;
 
             Main.functionReturned("Floor.accept", "true");
