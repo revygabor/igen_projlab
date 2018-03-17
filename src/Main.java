@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Main {
     static int indent = 0;
 
@@ -19,9 +21,14 @@ public class Main {
      */
     public static void functionReturned(String funcName, String returnValue) {
         indent--;
+        for (int i=0; i<indent; i++)
+            System.out.print("   ");
         System.out.println("Function returned: " + funcName + (returnValue.isEmpty() ? "" : (" -> " + returnValue )));
     }
 
-
+    public static void main(String[] args) throws IOException {
+        UseCase test = new W_B_W_Wall();
+        test.start();
+    }
 
 }

@@ -13,8 +13,8 @@ public class W_B_B_F implements UseCase {
     Field f1;
     Field neighbor1;
     Field neighbor2;
-    Thing b1;
-    Thing b2;
+    Box b1;
+    Box b2;
     Obstacle wall;
 
     public W_B_B_F() throws IOException {
@@ -34,7 +34,7 @@ public class W_B_B_F implements UseCase {
         String response = br.readLine();
 
         //A kérdésre adott választól függően
-        if(response=="Y" || response == "y") {
+        if(response.equals("Y") || response.equals("y")) {
             b2 = new Box();
             b2.moveToField(neighbor2, null);
             wall = new Obstacle();
