@@ -1,5 +1,5 @@
 ﻿public class W_B_BP implements UseCase{
-	Field neighbor;
+	Field neighbour;
 	Box b;
 	Worker w;
 	BoxPlace bp;
@@ -11,14 +11,14 @@
      * a Thinkeget a megfelelo fieldre mozgatja
      */
 	public W_B_BP() {
-		neighbor = new Floor();
+		neighbour = new Floor();
 	    b = new Box();
 	    w = new Worker();
 	    bp = new BoxPlace();
 	        
-	    neighbor.setNeighbor(Direction.UP, bp);
+	    neighbor.setNeighbour(Direction.UP, bp);
 	        
-	    b.moveToField(neighbor, null);
+	    b.moveToField(neighbour, null);
 	}
 
 	/**
