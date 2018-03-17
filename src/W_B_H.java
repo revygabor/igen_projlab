@@ -17,7 +17,7 @@ public class W_B_H implements UseCase {
         f1 = new Floor();
         neighbor = new Hole();
 
-        f1.setNeighbour(Direction.RIGHT, neighbor);
+        f1.setNeighbor(Direction.RIGHT, neighbor);
         b1.moveToField(f1, null);
     }
 

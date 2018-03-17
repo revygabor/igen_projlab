@@ -26,12 +26,12 @@ public abstract class Field {
      *           mezo van
      * @param field a beallitando szomszedos mezo
      */
-    public void setNeighbour(Direction d, Field field) {
-        Main.functionCalled("Field.setNeighbour");
+    public void setNeighbor(Direction d, Field field) {
+        Main.functionCalled("Field.setNeighbor");
 
         neighbor.put(d, field); //hashMap-be rakas
 
-        Main.functionReturned("Field.setNeighbour", "");
+        Main.functionReturned("Field.setNeighbor", "");
     }
 
     /**

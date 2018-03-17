@@ -1,4 +1,7 @@
+import javax.sound.midi.Soundbank;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     static int indent = 0;
@@ -27,7 +30,25 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        UseCase test = new W_B_W_Wall();
+        UseCase test;
+        System.out.println("Melyik use case-t szeretne elinditani?");
+        System.out.println("1. Worker-Box-Box-Floor");
+        System.out.println("2. Worker-Box-Hole");
+        System.out.println("3. Worker-Box-Worker-Wall");
+        System.out.print("A kivant use case sorszama: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String response = br.readLine();
+        int id = Integer.parseInt(response);
+        switch (id) {
+            case 1:
+                test = new W_B_B_F();
+                break;
+            case 2:
+                test = new W_B_H();
+                break;
+            default:
+                test = new W_B_W_Wall();
+        }
         test.start();
     }
 

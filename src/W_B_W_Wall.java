@@ -25,9 +25,9 @@ public class W_B_W_Wall implements UseCase {
         b = new Box();
         wh = Warehouse.getInstance();
 
-        f1.setNeighbour(Direction.RIGHT, neighbor1);
-        neighbor1.setNeighbour(Direction.RIGHT, neighbor2);
-        neighbor2.setNeighbour(Direction.RIGHT, wall);
+        f1.setNeighbor(Direction.RIGHT, neighbor1);
+        neighbor1.setNeighbor(Direction.RIGHT, neighbor2);
+        neighbor2.setNeighbor(Direction.RIGHT, wall);
 
         w.moveToField(f1, null);
         b.moveToField(neighbor1, null);

@@ -24,12 +24,12 @@ public class HiddenHole extends Field {
      * @param field a beallitando szomszedos mezo
      */
     @Override
-    public void setNeighbour(Direction d, Field field) {
-        Main.functionCalled("HiddenHole.setNeighbour");
+    public void setNeighbor(Direction d, Field field) {
+        Main.functionCalled("HiddenHole.setNeighbor");
 
-        floor.setNeighbour(d, field);
+        floor.setNeighbor(d, field);
 
-        Main.functionReturned("HiddenHole.setNeighbour", "");
+        Main.functionReturned("HiddenHole.setNeighbor", "");
     }
 
     /**

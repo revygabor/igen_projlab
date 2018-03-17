@@ -14,7 +14,7 @@
 	    f1 = new Floor();
 	    neighbour = new Floor();
 	        
-        f1.setNeighbour(Direction.UP, neighbour);
+        f1.setNeighbor(Direction.UP, neighbour);
 	        
         w.moveToField(f1, null);
     }

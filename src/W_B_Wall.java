@@ -2,7 +2,7 @@
     Worker w;
     Field f1;
     Box b;
-    Field neighbour1;
+    Field neighbor1;
     Obstacle wall;
 
     /**
@@ -15,11 +15,11 @@
         w = new Worker();
         f1 = new Floor();
         b = new Box();
-        neighbour1 = new Floor();
+        neighbor1 = new Floor();
         wall = new Obstacle();
 
-        f1.setNeighbour(Direction.UP, neighbour1);
-        neighbor1.setNeighbour(Direction.UP, wall);
+        f1.setNeighbor(Direction.UP, neighbor1);
+        neighbor1.setNeighbor(Direction.UP, wall);
 
         w.moveToField(f1, null);
         b.moveToField(neighbor1, null);

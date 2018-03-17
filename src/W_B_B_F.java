@@ -24,8 +24,8 @@ public class W_B_B_F implements UseCase {
         neighbor2 = new Floor();
         b1 = new Box();
 
-        f1.setNeighbour(Direction.RIGHT, neighbor1);
-        neighbor1.setNeighbour(Direction.RIGHT, neighbor2);
+        f1.setNeighbor(Direction.RIGHT, neighbor1);
+        neighbor1.setNeighbor(Direction.RIGHT, neighbor2);
         w.moveToField(f1, null);
         b1.moveToField(neighbor1, null);
 
@@ -38,7 +38,7 @@ public class W_B_B_F implements UseCase {
             b2 = new Box();
             b2.moveToField(neighbor2, null);
             wall = new Obstacle();
-            neighbor2.setNeighbour(Direction.RIGHT, wall);
+            neighbor2.setNeighbor(Direction.RIGHT, wall);
         }
     }
 
