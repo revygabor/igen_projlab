@@ -39,7 +39,7 @@ public class BoxPlace extends Floor {
         }
 
         Field n = neighbor.get(d);
-        boolean moveAccepted = containedThing.moveToField(n, d);
+        boolean moveAccepted = t.pushOtherThing(containedThing, d);
 
         if(moveAccepted) {
             containedThing = t;

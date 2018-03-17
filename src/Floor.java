@@ -31,7 +31,7 @@ public class Floor extends Field {
         }
 
         Field n = this.neighbor.get(d);
-        boolean moveAccepted = containedThing.moveToField(n, d);
+        boolean moveAccepted = t.pushOtherThing(containedThing, d);
 
         if(moveAccepted) {
             containedThing = t;
