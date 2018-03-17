@@ -1,7 +1,7 @@
 ﻿public class W_F implements UseCase{
     Worker w;
     Field f1;
-    Field neighbor;
+    Field neighbour;
 	
     /**
      * Inicializalja  a teszt esetet.
@@ -12,9 +12,9 @@
     public W_F() {
 	    w = new Worker();
 	    f1 = new Floor();
-	    neighbor = new Floor();
+	    neighbour = new Floor();
 	        
-        f1.setNeighbor(Direction.UP, neighbor);
+        f1.setNeighbor(Direction.UP, neighbour);
 	        
         w.moveToField(f1, null);
     }
