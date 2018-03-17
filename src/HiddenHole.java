@@ -29,7 +29,7 @@ public class HiddenHole extends Field {
 
         floor.setNeighbour(d, field);
 
-        Main.functionReturned("HiddenHole.setNeighbour", "void");
+        Main.functionReturned("HiddenHole.setNeighbour", "");
     }
 
     /**
@@ -69,7 +69,7 @@ public class HiddenHole extends Field {
         activeComponent.containedThing = null;
         activeComponent = newActiveComponent;
 
-        Main.functionReturned("signalSwitch", "void");
+        Main.functionReturned("signalSwitch", "");
     }
 
     /**

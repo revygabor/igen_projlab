@@ -62,6 +62,6 @@ public class BoxPlace extends Floor {
 
         boxIsHere = true;
 
-        Main.functionReturned("BoxPlace.signalBoxEntered", "void");
+        Main.functionReturned("BoxPlace.signalBoxEntered", "");
     }
 }

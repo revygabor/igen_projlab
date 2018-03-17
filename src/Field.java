@@ -31,7 +31,7 @@ public abstract class Field {
 
         neighbor.put(d, field); //hashMap-be rakas
 
-        Main.functionReturned("Field.setNeighbour", "void");
+        Main.functionReturned("Field.setNeighbour", "");
     }
 
     /**

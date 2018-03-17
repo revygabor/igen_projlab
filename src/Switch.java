@@ -57,6 +57,6 @@ public class Switch extends Field {
 
         hiddenHole.signalSwitch();
 
-        Main.functionReturned("Switch.changeSwitch", "void");
+        Main.functionReturned("Switch.changeSwitch", "");
     }
 }
