@@ -1,4 +1,4 @@
-﻿public class W_B_BP implements UseCase{
+public class W_B_BP implements UseCase{
 	Field neighbor;
 	Box b;
 	Worker w;

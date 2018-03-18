@@ -1,4 +1,4 @@
-﻿public class W_B_Wall implements UseCase {
+public class W_B_Wall implements UseCase {
     Worker w;
     Field f1;
     Box b;

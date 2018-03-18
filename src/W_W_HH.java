@@ -25,12 +25,12 @@ public class W_W_HH implements UseCase{
 	        
 	        
 
-	        f1.setNeighbour(Direction.RIGHT, neighbor);
-	        neighbor.setNeighbour(Direction.RIGHT, hh);
+	        f1.setNeighbor(Direction.RIGHT, neighbor);
+	        neighbor.setNeighbor(Direction.RIGHT, hh);
 	        w.moveToField(f1, null);
 	        w2.moveToField(neighbor, null);
 	        
-	        System.out.println("A rejtettlyuk nyitva legyen? Ezáltal a munkás beleesik. [Y/N]");
+	        System.out.println("A rejtett lyuk nyitva legyen? Ezaltal a munkas beleesik. [Y/N]");
 	        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	        String response = br.readLine();
 
@@ -43,7 +43,7 @@ public class W_W_HH implements UseCase{
 	
 	
 	/**
-     * Elindítja a tesztet.
+     * Elinditja a tesztet.
      */
     @Override
     public void start() {

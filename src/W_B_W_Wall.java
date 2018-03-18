@@ -10,10 +10,10 @@ public class W_B_W_Wall implements UseCase {
     Warehouse wh;
 
     /**
-     * Inicializálja  a teszt esetet.
-     * Létrehozza a változókat,
-     * beállítja a szükséges szomszédságokat,
-     * a Thinkeget a megfelelő fieldre mozgatja
+     * Inicializalja  a teszt esetet.
+     * Letrehozza a valtozokat,
+     * beallitja a szukseges szomszedsagokat,
+     * a Thinkeget a megfelelo fieldre mozgatja
      */
     public W_B_W_Wall(){
         w = new Worker();
@@ -35,7 +35,7 @@ public class W_B_W_Wall implements UseCase {
     }
 
     /**
-     * Elindítja a tesztet.
+     * Elinditja a tesztet.
      */
     @Override
     public void start() {

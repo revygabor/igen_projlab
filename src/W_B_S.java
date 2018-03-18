@@ -21,8 +21,8 @@ public class W_B_S implements UseCase{
 		        neighbor = new Floor();
 		        s = new Switch(hh);
 		        
-		        f1.setNeighbour(Direction.RIGHT, neighbor);
-		        neighbor.setNeighbour(Direction.RIGHT, s);
+		        f1.setNeighbor(Direction.RIGHT, neighbor);
+		        neighbor.setNeighbor(Direction.RIGHT, s);
 		        w.moveToField(f1, null);
 		        b.moveToField(neighbor, null);
 		    		        		        
@@ -30,7 +30,7 @@ public class W_B_S implements UseCase{
 		
 		
 		/**
-	     * Elindítja a tesztet.
+	     * Elinditja a tesztet.
 	     */
 	    @Override
 	    public void start() {

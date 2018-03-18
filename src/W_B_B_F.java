@@ -3,10 +3,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Inicializálja  a teszt esetet.
- * Létrehozza a változókat,
- * beállítja a szükséges szomszédságokat,
- * a Thinkeget a megfelelő fieldre mozgatja
+ * Inicializalja  a teszt esetet.
+ * Letrehozza a valtozokat,
+ * beallitja a szukseges szomszedsagokat,
+ * a Thinkeget a megfelelo fieldre mozgatja
  */
 public class W_B_B_F implements UseCase {
     Worker w;
@@ -29,11 +29,11 @@ public class W_B_B_F implements UseCase {
         w.moveToField(f1, null);
         b1.moveToField(neighbor1, null);
 
-        System.out.println("Legyen második doboz? Ezáltal a mozgás sikertelen lesz. [Y/N]");
+        System.out.println("Legyen masodik doboz? Ezaltal a mozgas sikertelen lesz. [Y/N]");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String response = br.readLine();
 
-        //A kérdésre adott választól függően
+        //A kerdesre adott valasztol fuggoen
         if(response.equals("Y") || response.equals("y")) {
             b2 = new Box();
             b2.moveToField(neighbor2, null);
@@ -43,7 +43,7 @@ public class W_B_B_F implements UseCase {
     }
 
     /**
-     * Elindítja a tesztet.
+     * Elinditja a tesztet.
      */
     @Override
     public void start() {

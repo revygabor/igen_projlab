@@ -9,6 +9,14 @@ public class Hole extends Field {
         Main.functionReturned("Hole", "Hole");
     }
 
+    /**
+     * Befogadja a raerkezo Thing-et, majd meghivja
+     * rajta a die() fuggvenyt. Minden esetben true
+     * a visszateresi erteke.
+     * @param t befogadando valami
+     * @param d ameyik iranyba mozog a valami
+     * @return mindig true, mert mindig elnyeli
+     */
     @Override
     public boolean accept(Thing t, Direction d) {
         Main.functionCalled("Hole.accept");
