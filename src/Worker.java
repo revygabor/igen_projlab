@@ -49,7 +49,7 @@ public class Worker extends Thing {
      */
     @Override
     public boolean pushByBox(Box b, Direction d, int f) {
-        if(!field.moveContainedThing(d, f+strength)) die();
+        if(!field.moveContainedThing(d, f)) die();
         return true;
     }
 
@@ -63,7 +63,7 @@ public class Worker extends Thing {
      */
     @Override
     public boolean pushByWorker(Worker w, Direction d, int f) {
-        boolean moveAccepted = field.moveContainedThing(d, f+strength);
+        boolean moveAccepted = field.moveContainedThing(d, f);
         return moveAccepted;
     }
 
