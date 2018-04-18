@@ -3,6 +3,17 @@ public class Worker extends Thing {
      * a munkas altal osszegyujtott pontszam
      */
     private int score = 0;
+    int strength;
+    public static final int  DEFAULT_STRENGTH = 10;
+
+    public Worker(int score, int strength) {
+        this.score = score;
+        this.strength = strength;
+    }
+
+    public Worker() {
+        this(0, DEFAULT_STRENGTH);
+    }
 
     /**
      * Pontszerzest jelez a munkasnak, igy eggyel megno a pontszama.

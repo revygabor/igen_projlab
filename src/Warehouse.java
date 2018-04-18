@@ -1,29 +1,30 @@
 public class Warehouse {
 
     private static Warehouse instance = new Warehouse();
+    private int livingWorkers = 0;
+    private Field[] fields;
 
     /**
      * Csokkenti az elo munkasokat szamlalo mezo erteket.
      */
     public void decreaseLivingWorkers() {
-        Main.functionCalled("Warehouse.DecreaseLivingWorkers");
-        Main.functionReturned("Warehouse.DecreaseLivingWorkers", "");
+        livingWorkers--;
+        checkEndGame();
     }
 
     /**
      * Inicializalo metodus a raktar objektumainak letrehozasara.
      */
-    public void init() {
-        Main.functionCalled("Warehouse.init");
-        Main.functionReturned("Warehouse.init", "");
+    public void init(int startingWorkerCount, Field[] fields) {
+        this.fields = fields;
+        livingWorkers = startingWorkerCount;
     }
 
     /**
      * Megvizsgalja, hogy a jatek a vegere ert-e (pl. a livingWorkers attributum erteke 1, vagy mar nincs tobb mozgathato Box).
      */
     public void checkEndGame() {
-        Main.functionCalled("Warehouse.checkEndGame");
-        Main.functionReturned("Warehouse.checkEndGame", "");
+
     }
 
     /**

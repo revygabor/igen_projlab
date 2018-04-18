@@ -1,79 +1,80 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import javax.sound.midi.Soundbank;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
-    static int indent = 0;
 
-    /**
-     * Fuggveny meghivasast logolja a standard kimenetre
-     * @param funcName a meghivott fuggveny neve
-     */
-    public static void functionCalled(String funcName) {
-        for (int i=0; i<indent; i++)
-            System.out.print("   ");
-        System.out.println("Function Called: " + funcName);
-        indent++;
+    static Warehouse warehouse;
+    static Worker[] workers;
+
+    public static void main(String[] args) {
+        newGame();
     }
 
-    /**
-     * Fuggveny visszatereset logolja a standerd kimenetre
-     * @param funcName a visszatero fuggveny neve
-     * @param returnValue a fuggveny visszateresi erteke, ha van, egyebkent ures string
-     */
-    public static void functionReturned(String funcName, String returnValue) {
-        indent--;
-        for (int i=0; i<indent; i++)
-            System.out.print("   ");
-        System.out.println("Function returned: " + funcName + (returnValue.isEmpty() ? "" : (" -> " + returnValue )));
-    }
-
-    public static void main(String[] args) throws IOException {
-        UseCase test;
-        System.out.println("Melyik use case-t szeretne elinditani?");
-        System.out.println("1. Worker-Box-Box-Floor");
-        System.out.println("2. Worker-Worker-HiddenHole");
-        System.out.println("3. Worker-Switch-Box");
-        System.out.println("4. Worker-Box-BoxPlace");
-        System.out.println("5. Worker-Box-Hole");
-        System.out.println("6. Worker-Box-Worker-Wall");
-        System.out.println("7. Worker-Box-Wall");
-        System.out.println("8. Worker-Floor");
-        System.out.print("A kivant use case sorszama: ");
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String response = br.readLine();
-        int id = Integer.parseInt(response);
-        switch (id) {
-            case 1:
-                test = new W_B_B_F();
+    private static void newGame() {
+        BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+        String path = "";
+        while(true) {
+            try {
+                path = consoleReader.readLine();
+                readInputFile(path);
                 break;
-            case 2:
-                test = new W_W_HH();
-                break;
-            case 3:
-                test = new W_S_B();
-                break;
-            case 4:
-                test = new W_B_BP();
-                break;
-            case 5:
-                test = new W_B_H();
-                break;
-            case 6:
-                test = new W_B_W_Wall();
-                break;
-            case 7:
-                test = new W_B_Wall();
-                break;
-            case 8:
-                test = new W_F();
-                break;
-            default:
-                test = new W_B_S();
+            } catch (IOException e) {
+                System.out.println("Error reading file: " + path);
+            }
         }
-        test.start();
     }
 
+    List<List<Field>> fieldTable = new ArrayList<>();
+
+    private static void readInputFile(String path) throws IOException {
+        BufferedReader file = new BufferedReader(new FileReader(path));
+        String line = file.readLine();
+        String[] split = line.split(" ");
+        workers = new Worker[split.length / 2];
+        for(int i = 0; i<workers.length; i++) {
+            int score = Integer.parseInt(split[2 * i]);
+            int strength = Integer.parseInt(split[2 * i + 1]);
+            workers[i] = new Worker(score, strength);
+        }
+        while ((line = file.readLine()) != null) {
+            split = line.split(" ");
+            //TODO: finish
+        }
+    }
+
+    private static String execute(String command) {
+        throw new NotImplementedException();
+    }
+
+    private static String getWorkerState(int idx) {
+        throw new NotImplementedException();
+    }
+
+    private static String getFieldState(int x, int y) {
+        throw new NotImplementedException();
+    }
+
+    private static String getGameState() {
+        throw new NotImplementedException();
+    }
+
+    private static String commandWorker(int idx, String command) {
+        throw new NotImplementedException();
+    }
+
+    private Field fieldFromInput(String desc) {
+        Pattern p = Pattern.compile("^(?<fieldtype>H|(H\\d+([H_]))|(S\\d+([NF]))|P|O|_)(?<effect>[HON])(?<contained>(W\\d+)|B)?");
+        Matcher matcher = p.matcher(desc);
+        if(matcher.matches()) {
+            String fieldtype = matcher.group("fieldtype");
+
+        }
+        return null;
+    }
 }
