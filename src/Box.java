@@ -27,9 +27,7 @@ public class Box extends Thing {
      */
     @Override
     public boolean pushOtherThing(Thing t, Direction d, int f) {
-        int forceNeed = field.friction.getFrictionCoefficient()*mass;
-        if(f-forceNeed<0) return false;
-        boolean moveAccepted = t.pushByBox(this, d, f-forceNeed);
+        boolean moveAccepted = t.pushByBox(this, d, f);
         return moveAccepted;
     }
 
