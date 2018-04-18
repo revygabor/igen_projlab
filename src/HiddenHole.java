@@ -9,11 +9,7 @@ public class HiddenHole extends Field {
     private Field activeComponent;
 
     public HiddenHole() {
-        Main.functionCalled("HiddenHole");
-
         activeComponent = floor;
-
-        Main.functionReturned("HiddenHole", "HiddenHole");
     }
 
     /**
@@ -25,11 +21,7 @@ public class HiddenHole extends Field {
      */
     @Override
     public void setNeighbor(Direction d, Field field) {
-        Main.functionCalled("HiddenHole.setNeighbor");
-
         floor.setNeighbor(d, field);
-
-        Main.functionReturned("HiddenHole.setNeighbor", "");
     }
 
     /**
@@ -38,15 +30,13 @@ public class HiddenHole extends Field {
      * Hole eseten a Hole-et.
      * @param t befogadando valami
      * @param d ameyik iranyba mozog a valami
+     * @param f a még rendelkezésre álló erő
      * @return sikeres -e a befogadas
      */
     @Override
-    public boolean accept(Thing t, Direction d) {
-        Main.functionCalled("HiddenHole.accept");
+    public boolean accept(Thing t, Direction d, int f) {
+        boolean moveAccepted =  activeComponent.accept(t, d, f);
 
-        boolean moveAccepted =  activeComponent.accept(t, d);
-
-        Main.functionReturned("HiddenHole.accept", moveAccepted?"true":"false");
         return moveAccepted;
     }
 
@@ -56,8 +46,6 @@ public class HiddenHole extends Field {
      * Hole-rol Floor-ra vagy Floor-rol Hole-ra valtozik.
      */
     public void signalSwitch() {
-        Main.functionCalled("HiddenHole.signalSwitch");
-
         Field newActiveComponent;
         if(activeComponent == floor) {
             newActiveComponent = hole;
@@ -65,11 +53,10 @@ public class HiddenHole extends Field {
         else
             newActiveComponent = floor;
 
-        newActiveComponent.accept(activeComponent.containedThing, Direction.DOWN); //aki eddig a floor-on volt, meghal
+        newActiveComponent.accept(activeComponent.containedThing, Direction.DOWN, 1); //aki eddig a floor-on volt, meghal
         activeComponent.containedThing = null;
         activeComponent = newActiveComponent;
 
-        Main.functionReturned("signalSwitch", "");
     }
 
     /**
@@ -79,14 +66,12 @@ public class HiddenHole extends Field {
      * sikeres volt-e a mozgas. Ebben az esetben Floor eseten
      * mukodik igy, Hole eseten mindig true az ertek.
      * @param d amelyik iranyba el kell mozgatni
+     * @param f a még rendelkezésre álló erő
      * @return
      */
-    public boolean moveContainedThing(Direction d) {
-        Main.functionCalled("Hiddenhole.moveContainedThing");
+    public boolean moveContainedThing(Direction d, int f) {
+        boolean moveAccepted = activeComponent.moveContainedThing(d, f);
 
-        boolean moveAccepted = activeComponent.moveContainedThing(d);
-
-        Main.functionReturned("Hiddenhole.moveContainedThing", moveAccepted?"true":"false");
         return moveAccepted;
     }
 }

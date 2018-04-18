@@ -20,9 +20,7 @@ public class Worker extends Thing {
      */
     @Override
     public void signalScore() {
-        Main.functionCalled("Worker.signalScore");
         score++;
-        Main.functionReturned("Worker.signalScore", "");
     }
 
 
@@ -31,13 +29,12 @@ public class Worker extends Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param t a dolog amit meg kell lokni
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
     @Override
-    public boolean pushOtherThing(Thing t, Direction d) {
-        Main.functionCalled("Worker.pushOtherThing");
-        boolean moveAccepted = t.pushByWorker(this, d);
-        Main.functionReturned("Worker.pushOtherThing", String.valueOf(moveAccepted));
+    public boolean pushOtherThing(Thing t, Direction d, int f) {
+        boolean moveAccepted = t.pushByWorker(this, d, f+strength);
         return moveAccepted;
     }
 
@@ -47,13 +44,12 @@ public class Worker extends Thing {
      * Sikertelen mozgas eseten a munkas meghal, mert a doboz agyonnyomja.
      * @param b a doboz, ami lok
      * @param d a mozgas iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e (mindig true, mert ha nem tud mozdulni meghal)
      */
     @Override
-    public boolean pushByBox(Box b, Direction d) {
-        Main.functionCalled("Worker.pushByBox");
-        if(!field.moveContainedThing(d)) die();
-        Main.functionReturned("Worker.pushByBox", "true");
+    public boolean pushByBox(Box b, Direction d, int f) {
+        if(!field.moveContainedThing(d, f+strength)) die();
         return true;
     }
 
@@ -62,13 +58,12 @@ public class Worker extends Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param w a munkas, aki lok
      * @param d a mozgas iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
     @Override
-    public boolean pushByWorker(Worker w, Direction d) {
-        Main.functionCalled("Worker.pushByWorker");
-        boolean moveAccepted = field.moveContainedThing(d);
-        Main.functionReturned("Worker.pushByWorker", String.valueOf(moveAccepted));
+    public boolean pushByWorker(Worker w, Direction d, int f) {
+        boolean moveAccepted = field.moveContainedThing(d, f+strength);
         return moveAccepted;
     }
 
@@ -78,8 +73,6 @@ public class Worker extends Thing {
      */
     @Override
     public void arriveAtBoxPlace(BoxPlace place) {
-        Main.functionCalled("Worker.arriveAtBoxPlace");
-        Main.functionReturned("Worker.arriveAtBoxPlace", "");
     }
 
     /**
@@ -89,8 +82,6 @@ public class Worker extends Thing {
      */
     @Override
     public void enterOrLeaveSwitch(Switch s) {
-        Main.functionCalled("Worker.enterOrLeaveSwitch");
-        Main.functionReturned("Worker.enterOrLeaveSwitch", "");
     }
 
     /**
@@ -99,9 +90,7 @@ public class Worker extends Thing {
      */
     @Override
     public void die() {
-        Main.functionCalled("Worker.die");
         Warehouse.getInstance().decreaseLivingWorkers();
-        Main.functionReturned("Worker.die", "");
     }
 
     /**
@@ -110,8 +99,20 @@ public class Worker extends Thing {
      * @param d a mozgas iranya
      */
     public void move(Direction d) {
-        Main.functionCalled("Worker.move");
-        field.moveContainedThing(d);
-        Main.functionReturned("Worker.move", "");
+        field.moveContainedThing(d, strength);
+    }
+
+    /**
+     * A mezőre amin áll olajat helyez el a munkás
+     */
+    public void dropOil(){
+        field.apply(new Oil());
+    }
+
+    /**
+     * A mezőre amin áll mézet helyez el a munkás
+     */
+    public void dropHoney(){
+        field.apply(new Honey());
     }
 }

@@ -5,9 +5,6 @@
 public class Floor extends Field {
 
     public Floor() {
-        Main.functionCalled("Floor");
-
-        Main.functionReturned("Floor", "Floor");
     }
 
     /**
@@ -17,27 +14,25 @@ public class Floor extends Field {
      * ter vissza.
      * @param t befogadando valami
      * @param d ameyik iranyba mozog a valami
+     * @param f a még rendelkezésre álló erő
      * @return sikeres -e a befogadás
      */
     @Override
-    public boolean accept(Thing t, Direction d) {
-        Main.functionCalled("accept");
+    public boolean accept(Thing t, Direction d, int f) {
 
         if(containedThing == null || d == null) {
             containedThing = t;
 
-            Main.functionReturned("Floor.accept", "true");
             return true;
         }
 
         Field n = this.neighbor.get(d);
-        boolean moveAccepted = t.pushOtherThing(containedThing, d);
+        boolean moveAccepted = t.pushOtherThing(containedThing, d, f);
 
         if(moveAccepted) {
             containedThing = t;
         }
 
-        Main.functionReturned("Floor.accept", moveAccepted?"true":"false");
         return moveAccepted;
     }
 }

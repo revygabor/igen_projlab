@@ -5,9 +5,6 @@ public class BoxPlace extends Floor {
     private boolean boxIsHere = false;
 
     public BoxPlace() {
-        Main.functionCalled("BoxPlace");
-
-        Main.functionReturned("BoxPlace", "BoxPlace");
     }
 
     /**
@@ -17,14 +14,13 @@ public class BoxPlace extends Floor {
      * egyebkent false-al ter vissza.
      * @param t befogadando valami
      * @param d ameyik iranyba mozog a valami
+     * @param f a még rendelkezésre álló erő
      * @return
      */
     @Override
-    public boolean accept(Thing t, Direction d) {
-        Main.functionCalled("accept");
+    public boolean accept(Thing t, Direction d, int f) {
 
         if(boxIsHere) {
-           Main.functionReturned("BoxPlace.accept", "false");
            return false;
         }
 
@@ -34,12 +30,11 @@ public class BoxPlace extends Floor {
             if(t != null)
                 t.arriveAtBoxPlace(this);
 
-            Main.functionReturned("BoxPlace.accept", "true");
             return true;
         }
 
         Field n = neighbor.get(d);
-        boolean moveAccepted = t.pushOtherThing(containedThing, d);
+        boolean moveAccepted = t.pushOtherThing(containedThing, d, f);
 
         if(moveAccepted) {
             containedThing = t;
@@ -48,7 +43,6 @@ public class BoxPlace extends Floor {
                 t.arriveAtBoxPlace(this);
         }
 
-        Main.functionReturned("BoxPlace.accept", moveAccepted ?"true":"false");
         return moveAccepted;
     }
 
@@ -58,10 +52,8 @@ public class BoxPlace extends Floor {
      * true, egyebkent false.
      */
     public void signalBoxEntered() {
-        Main.functionCalled("BoxPlace.signalBoxEntered");
 
         boxIsHere = true;
 
-        Main.functionReturned("BoxPlace.signalBoxEntered", "");
     }
 }
