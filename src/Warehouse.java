@@ -24,7 +24,6 @@ public class Warehouse {
      * Megvizsgalja, hogy a jatek a vegere ert-e (pl. a livingWorkers attributum erteke 1, vagy mar nincs tobb mozgathato Box).
      */
     public void checkEndGame() {
-
     }
 
     /**

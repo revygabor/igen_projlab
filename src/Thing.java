@@ -16,40 +16,42 @@ public abstract class Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param t a dolog amit meg kell lokni
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres volt-e
      */
-    public abstract boolean pushOtherThing(Thing t, Direction d);
+    public abstract boolean pushOtherThing(Thing t, Direction d, int f);
 
     /**
      * A dolgot egy doboz loki meg az adott iranyba, erre reagal.
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param b a doboz, ami lok
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
-    public abstract boolean pushByBox(Box b, Direction d);
+    public abstract boolean pushByBox(Box b, Direction d, int f);
 
     /**
      * A dolgot egy munkas loki meg az adott iranyba, erre reagal.
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param w a munkas, aki lok
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeressege
      */
-    public abstract boolean pushByWorker(Worker w, Direction d);
+    public abstract boolean pushByWorker(Worker w, Direction d, int f);
 
     /**
      *A dolog az atadott mezore probal mozogni, a mozgas iranyat a masodik parameter jelzi.
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param targetField a celmezo
      * @param d a mozgas iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
-    public boolean moveToField(Field targetField, Direction d) {
-        Main.functionCalled("Thing.moveToField");
-        boolean accepted = targetField.accept(this, d);
+    public boolean moveToField(Field targetField, Direction d, int f) {
+        boolean accepted = targetField.accept(this, d, f);
         if(accepted) field = targetField;
-        Main.functionReturned("Thing.moveToField", String.valueOf(accepted));
         return accepted;
     }
 

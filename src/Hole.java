@@ -4,9 +4,6 @@
  */
 public class Hole extends Field {
     public Hole() {
-        Main.functionCalled("Hole");
-
-        Main.functionReturned("Hole", "Hole");
     }
 
     /**
@@ -15,16 +12,15 @@ public class Hole extends Field {
      * a visszateresi erteke.
      * @param t befogadando valami
      * @param d ameyik iranyba mozog a valami
+     * @param f a még rendelkezésre álló erő
      * @return mindig true, mert mindig elnyeli
      */
     @Override
-    public boolean accept(Thing t, Direction d) {
-        Main.functionCalled("Hole.accept");
+    public boolean accept(Thing t, Direction d, int f) {
 
         if(t!=null)
             t.die();
 
-        Main.functionReturned("Hole.accept", "true");
         return true;
     }
 }

@@ -10,11 +10,9 @@ import java.util.Map;
 public abstract class Field {
     protected Map<Direction, Field> neighbor = new HashMap<>();
     protected Thing containedThing;
+    protected FieldEffect friction = new Nothing();
 
     public Field() {
-        Main.functionCalled("Field");
-
-        Main.functionReturned("Field", "Field");
     }
 
     /**
@@ -27,11 +25,9 @@ public abstract class Field {
      * @param field a beallitando szomszedos mezo
      */
     public void setNeighbor(Direction d, Field field) {
-        Main.functionCalled("Field.setNeighbor");
 
         neighbor.put(d, field); //hashMap-be rakas
 
-        Main.functionReturned("Field.setNeighbor", "");
     }
 
     /**
@@ -41,35 +37,42 @@ public abstract class Field {
      * sikeres volt-e a befogadas.
      * @param t befogadando valami
      * @param d ameyik iranyba mozog a valami
+     * @param f a még rendelkezésre álló erő
      * @return sikeres -e a befogadas
      */
-    public abstract boolean accept(Thing t, Direction d);
+    public abstract boolean accept(Thing t, Direction d, int f);
 
     /**
      * d iranyba levo szomszedjan meghivja az accept függvenyt,
-     * aminek atadja a containedThing-et, jelezven, hogy a Thing
+     * aminek atadja a containedThing-et, jelezven, hogy a Thing,
      * szeretne odalepni. Visszateresi erteke jelzi, hogy
      * sikeres volt-e a mozgas.
-     * @param d amelyik iranyba el kell mozgatni
+     * @param d amelyik iranyba el kell mozgatniű
+     * @param f a még rendelkezésre álló erő
      * @return sikeres -e a mozgatas
      */
-    public boolean moveContainedThing(Direction d) {
-        Main.functionCalled("Field.moveContainedThing");
+    public boolean moveContainedThing(Direction d, int f) {
 
         if(containedThing == null) {
-            Main.functionReturned("Field.moveContainedThing", "true");
             return true;
         }
 
         Field n = neighbor.get(d);
-        boolean moveAccepted = containedThing.moveToField(n, d);
+        boolean moveAccepted = containedThing.moveToField(n, d, f);
 
         if(moveAccepted) {
             this.containedThing = null;
         }
 
-        Main.functionReturned("Field.moveContainedThing", moveAccepted ?"true":"false");
         return moveAccepted;
+    }
+
+    /**
+     * Új súrlódási effectet állítbe a mezőre
+     * @param effect az új effect
+     */
+    public void apply(FieldEffect effect){
+        friction = effect;
     }
 
 }

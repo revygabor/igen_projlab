@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Inicializalja  a teszt esetet.
+ * Inicializalja  a tesztesetet.
  * Letrehozza a valtozokat,
  * beallitja a szukseges szomszedsagokat,
  * a Thinkeget a megfelelo fieldre mozgatja
@@ -26,8 +26,8 @@ public class W_B_B_F implements UseCase {
 
         f1.setNeighbor(Direction.RIGHT, neighbor1);
         neighbor1.setNeighbor(Direction.RIGHT, neighbor2);
-        w.moveToField(f1, null);
-        b1.moveToField(neighbor1, null);
+        w.moveToField(f1, null, 1);
+        b1.moveToField(neighbor1, null, 1);
 
         System.out.println("Legyen masodik doboz? Ezaltal a mozgas sikertelen lesz. [Y/N]");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,7 +36,7 @@ public class W_B_B_F implements UseCase {
         //A kerdesre adott valasztol fuggoen
         if(response.equals("Y") || response.equals("y")) {
             b2 = new Box();
-            b2.moveToField(neighbor2, null);
+            b2.moveToField(neighbor2, null, 1);
             wall = new Obstacle();
             neighbor2.setNeighbor(Direction.RIGHT, wall);
         }

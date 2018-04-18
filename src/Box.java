@@ -5,13 +5,16 @@ public class Box extends Thing {
     Thing pushedBy;
 
     /**
+     * A Box tömege
+     */
+    private int mass = 1;
+
+    /**
      * Pontszerzes jelzese.
      */
     @Override
     public void signalScore() {
-        Main.functionCalled("Box.signalScore");
         pushedBy.signalScore();
-        Main.functionReturned("Box.signalScore", "");
     }
 
     /**
@@ -19,13 +22,14 @@ public class Box extends Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param t a dolog amit meg kell lokni
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
     @Override
-    public boolean pushOtherThing(Thing t, Direction d) {
-        Main.functionCalled("Box.pushOtherThing");
-        boolean moveAccepted = t.pushByBox(this, d);
-        Main.functionReturned("Box.pushOtherThing", String.valueOf(moveAccepted));
+    public boolean pushOtherThing(Thing t, Direction d, int f) {
+        int forceNeed = field.friction.getFrictionCoefficient()*mass;
+        if(f-forceNeed<0) return false;
+        boolean moveAccepted = t.pushByBox(this, d, f-forceNeed);
         return moveAccepted;
     }
 
@@ -34,14 +38,15 @@ public class Box extends Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param b a doboz, ami lok
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
     @Override
-    public boolean pushByBox(Box b, Direction d) {
-        Main.functionCalled("Box.pushByBox");
+    public boolean pushByBox(Box b, Direction d, int f) {
         pushedBy = b;
-        boolean moveAccepted = field.moveContainedThing(d);
-        Main.functionReturned("Box.pushByBox", String.valueOf(moveAccepted));
+        int forceNeed = field.friction.getFrictionCoefficient()*mass;
+        if(f-forceNeed<0) return false;
+        boolean moveAccepted = field.moveContainedThing(d, f-forceNeed);
         return moveAccepted;
     }
 
@@ -50,14 +55,15 @@ public class Box extends Thing {
      * Visszaterese a mozgas sikeresseget jelzi.
      * @param w a munkas, aki lok
      * @param d a lokes iranya
+     * @param f a még rendelkezésre álló erő
      * @return a mozgas sikeres-e
      */
     @Override
-    public boolean pushByWorker(Worker w, Direction d) {
-        Main.functionCalled("Box.pushByWorker");
+    public boolean pushByWorker(Worker w, Direction d, int f) {
         pushedBy = w;
-        boolean moveAccepted = field.moveContainedThing(d);
-        Main.functionReturned("Box.pushByWorker", String.valueOf(moveAccepted));
+        int forceNeed = field.friction.getFrictionCoefficient()*mass;
+        if(f-forceNeed < 0) return false;
+        boolean moveAccepted = field.moveContainedThing(d, f-forceNeed);
         return moveAccepted;
     }
 
@@ -68,10 +74,8 @@ public class Box extends Thing {
      */
     @Override
     public void arriveAtBoxPlace(BoxPlace place) {
-        Main.functionCalled("Box.arriveAtBoxPlace");
         place.signalBoxEntered();
         pushedBy.signalScore();
-        Main.functionReturned("Box.arriveAtBoxPlace", "");
     }
 
     /**
@@ -81,9 +85,7 @@ public class Box extends Thing {
      */
     @Override
     public void enterOrLeaveSwitch(Switch s) {
-        Main.functionCalled("Box.enterOrLeaveSwitch");
         s.changeSwitch();
-        Main.functionReturned("Box.enterOrLeaveSwitch", "");
     }
 
     /**
@@ -91,8 +93,6 @@ public class Box extends Thing {
      */
     @Override
     public void die() {
-        Main.functionCalled("Box.die");
-        Main.functionReturned("Box.die", "");
     }
 
     /**
@@ -100,8 +100,6 @@ public class Box extends Thing {
      * @return a lada mozgathato-e meg
      */
     public boolean stillMoveable() {
-        Main.functionCalled("Box.stillMoveable");
-        Main.functionReturned("Box.stillMoveable", "true");
         return true;
     }
 }
