@@ -25,9 +25,7 @@ public abstract class Field {
      * @param field a beallitando szomszedos mezo
      */
     public void setNeighbor(Direction d, Field field) {
-
         neighbor.put(d, field); //hashMap-be rakas
-
     }
 
     /**
@@ -74,5 +72,17 @@ public abstract class Field {
     public void apply(FieldEffect effect){
         friction = effect;
     }
+
+    /**
+     * A mezo rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return A mezo rovid (par betus) leirasa
+     */
+    abstract public String getShortDesc();
+
+    /**
+     * A mezo hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return A mezo hosszu leirasa
+     */
+    abstract public String getLongDescs();
 
 }

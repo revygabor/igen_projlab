@@ -3,7 +3,11 @@ public class Worker extends Thing {
      * a munkas altal osszegyujtott pontszam
      */
     private int score = 0;
+
     int strength;
+    public int getStrength() {
+        return strength;
+    }
     public static final int  DEFAULT_STRENGTH = 10;
 
     public Worker(int score, int strength) {
@@ -98,8 +102,8 @@ public class Worker extends Thing {
      * Mozgaslanc kezdete, igy nincs visszateresi erteke.
      * @param d a mozgas iranya
      */
-    public void move(Direction d) {
-        field.moveContainedThing(d, strength);
+    public boolean move(Direction d) {
+        return field.moveContainedThing(d, strength);
     }
 
     /**
@@ -114,5 +118,9 @@ public class Worker extends Thing {
      */
     public void dropHoney(){
         field.apply(new Honey());
+    }
+
+    public int getScore() {
+        return score;
     }
 }

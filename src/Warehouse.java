@@ -1,8 +1,10 @@
+import java.util.List;
+
 public class Warehouse {
 
     private static Warehouse instance = new Warehouse();
     private int livingWorkers = 0;
-    private Field[] fields;
+    private List<List<Field>> fields;
 
     /**
      * Csokkenti az elo munkasokat szamlalo mezo erteket.
@@ -15,7 +17,7 @@ public class Warehouse {
     /**
      * Inicializalo metodus a raktar objektumainak letrehozasara.
      */
-    public void init(int startingWorkerCount, Field[] fields) {
+    public void init(int startingWorkerCount, List<List<Field>> fields) {
         this.fields = fields;
         livingWorkers = startingWorkerCount;
     }
@@ -35,4 +37,8 @@ public class Warehouse {
     }
 
     private Warehouse() {}
+
+    public List<List<Field>> getFields() {
+        return fields;
+    }
 }
