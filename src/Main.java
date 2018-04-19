@@ -180,8 +180,11 @@ public class Main {
             res.append(w.getScore()).append(' ').append(w.getStrength()).append(' ');
         }
         res.append('\n');
-        for (List<Field> row : Warehouse.getInstance().getFields()) {
-            for (Field field : row) {
+        List<List<Field>> fields = Warehouse.getInstance().getFields();
+        for (int i = 1; i < fields.size()-1; i++) {
+            List<Field> row = fields.get(i);
+            for (int j = 1; j < row.size()-1; j++) {
+                Field field = row.get(j);
                 res.append(field.getShortDesc()).append(' ');
             }
             res.append('\n');
@@ -233,7 +236,7 @@ public class Main {
      * @return Az input altal leirt mezo
      */
     private static Field fieldFromInput(String desc) {
-        Pattern p = Pattern.compile("^(?<fieldtype>H|(H(?<hid>\\d+)([H_]))|(S(?<sid>\\d+)([NF]))|P|O|_)(?<effect>[HON])(?<contained>(W(?<wid>\\d+))|B)?");
+        Pattern p = Pattern.compile("^(?<fieldtype>H|(H(?<hid>\\d+)(?<state>[H_]))|(S(?<sid>\\d+)(?<onoff>[NF]))|P|O|_)(?<effect>[HON])(?<contained>(W(?<wid>\\d+))|B)?");
         Matcher matcher = p.matcher(desc);
         if(matcher.matches()) {
             String fieldtype = matcher.group("fieldtype");
@@ -264,6 +267,9 @@ public class Main {
                     f = new HiddenHole();
                     _lonelyHiddenHoleCache.put(id, (HiddenHole) f);
                 }
+                String state = matcher.group("state");
+                if(state.equals("H"))
+                    ((HiddenHole)f).signalSwitch();
             } else {
                 int id = Integer.parseInt(matcher.group("sid"));
                 if(_lonelyHiddenHoleCache.containsKey(id))
@@ -273,6 +279,9 @@ public class Main {
                     f = new Switch(dummyHH);
                     _dummyHiddenHoleCache.put(id, dummyHH);
                 }
+                String onoff = matcher.group("onoff");
+                if(onoff.equals("N"))
+                    ((Switch)f).changeSwitch();
             }
 
             FieldEffect eff = effect.equals("H") ? new Honey() : effect.equals("O") ? new Oil() : new Nothing();
