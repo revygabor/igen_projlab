@@ -96,7 +96,12 @@ public class HiddenHole extends Field {
      */
     @Override
     public String getShortDesc() {
-        return "H" + id + activeComponent.getShortDesc();
+        String desc = "H" + id;
+
+        if(containedThing != null)
+            desc += activeComponent.getShortDesc();
+
+        return desc;
     }
 
     /**

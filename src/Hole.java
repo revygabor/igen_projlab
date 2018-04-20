@@ -31,7 +31,7 @@ public class Hole extends Field {
      */
     @Override
     public String getShortDesc() {
-        return null;//TODO
+        return "H" + friction.getShortDesc();
     }
 
     /**
@@ -40,6 +40,6 @@ public class Hole extends Field {
      */
     @Override
     public String getLongDesc() {
-        return null;//TODO
+        return "Hole";
     }
 }

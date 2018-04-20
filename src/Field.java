@@ -93,16 +93,16 @@ public abstract class Field {
      * A mezo X poziciojat adja meg
      * @return X pozicio
      */
-    public int getXPos() {//TODO
-        return 0;
+    public int getXPos() {
+        return x;
     }
 
     /**
      * A mezo Y poziciojat adja meg
      * @return Y pozicio
      */
-    public int getYPos() {//TODO
-        return 0;
+    public int getYPos() {
+        return y;
     }
 
 }

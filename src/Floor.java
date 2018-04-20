@@ -44,7 +44,12 @@ public class Floor extends Field {
      */
     @Override
     public String getShortDesc() {
-        return "_" + friction.getShortDesc() + containedThing.getShortDesc();
+        String desc = "_" + friction.getShortDesc();
+
+        if(containedThing != null)
+            desc += containedThing.getShortDesc();
+
+        return desc;
     }
 
 
@@ -54,6 +59,11 @@ public class Floor extends Field {
      */
     @Override
     public String getLongDesc() {
-        return "Floor: " + containedThing.getLongDesc();
+        String desc = "Floor";
+
+        if(containedThing != null)
+            desc += ": " + containedThing.getLongDesc();
+
+        return desc;
     }
 }

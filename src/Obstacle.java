@@ -18,4 +18,22 @@ public class Obstacle extends Field {
     public boolean accept(Thing t, Direction d, int f) {
         return false;
     }
+
+    /**
+     * Az akadaly rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return Az akadaly rovid (par betus) leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return "O" + friction.getShortDesc();
+    }
+
+    /**
+     * Az akadaly hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return Az akadaly hosszu leirasa
+     */
+    @Override
+    public String getLongDesc() {
+        return "Obstacle";
+    }
 }
