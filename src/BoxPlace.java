@@ -4,7 +4,8 @@
 public class BoxPlace extends Floor {
     private boolean boxIsHere = false;
 
-    public BoxPlace() {
+    public BoxPlace(int x, int y) {
+        super(x, y);
     }
 
     /**

@@ -3,7 +3,8 @@
  * Semmit sem enged magara lepni.
  */
 public class Obstacle extends Field {
-    public Obstacle() {
+    public Obstacle(int x, int y) {
+        super(x, y);
     }
 
     /**

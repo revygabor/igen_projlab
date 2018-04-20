@@ -1,4 +1,4 @@
-public class Worker extends Thing {//TODO: id, isALive, die
+public class Worker extends Thing {
     /**
      * a munkas altal osszegyujtott pontszam
      */
@@ -20,11 +20,11 @@ public class Worker extends Thing {//TODO: id, isALive, die
     }
     public static final int  DEFAULT_STRENGTH = 10;
 
-    public Worker(int score, int strength/*, int id, boolean isAlive*/) { //TODO: id, isAlive
+    public Worker(int score, int strength, int id, boolean isAlive) {
         this.score = score;
         this.strength = strength;
-        //this.id = id;
-        //this.isAlive = isAlive
+        this.id = id;
+        this.isAlive = isAlive;
     }
 
     /**

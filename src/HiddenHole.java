@@ -4,13 +4,26 @@
  * lesz.
  */
 public class HiddenHole extends Field {
-    private Floor floor = new Floor();
-    private Hole hole = new Hole();
+    private Floor floor;
+    private Hole hole;
     private Field activeComponent;
-    private int id;//TODO: konstruktorba beerakni
+    private int id;
 
-    public HiddenHole() {
+    public HiddenHole(int x, int y, int id) {
+        super(x, y);
+        this.id = id;
+        floor = new Floor(x, y);
+        hole = new Hole(x, y);
         activeComponent = floor;
+    }
+
+    public void setCoords(int x, int y) {
+        this.x = x;
+        this.y = y;
+        floor.x = x;
+        floor.y = y;
+        hole.x = x;
+        hole.y = y;
     }
 
     /**

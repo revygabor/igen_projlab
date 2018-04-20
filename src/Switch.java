@@ -6,10 +6,13 @@
  */
 public class Switch extends Field {
     private HiddenHole hiddenHole;
+    private int id;
 
-    public Switch(HiddenHole hiddenHole) {
+    public Switch(HiddenHole hiddenHole, int x, int y, int id) {
+        super(x, y);
         this.hiddenHole = hiddenHole;
 
+        this.id = id;
     }
 
     /**

@@ -11,8 +11,12 @@ public abstract class Field {
     protected Map<Direction, Field> neighbor = new HashMap<>();
     protected Thing containedThing;
     protected FieldEffect friction = new Nothing();
+    protected int x;
+    protected int y;
 
-    public Field() {
+    public Field(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     /**

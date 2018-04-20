@@ -55,9 +55,10 @@ public class Main {
         String[] split = line.split(" ");
         workers = new Worker[split.length / 2];
         for(int i = 0; i<workers.length; i++) {
-            int score = Integer.parseInt(split[2 * i]);
+            boolean isDead = split[2 * i].equals("X");
+            int score = isDead ? -1 : Integer.parseInt(split[2 * i]);
             int strength = Integer.parseInt(split[2 * i + 1]);
-            workers[i] = new Worker(score, strength);
+            workers[i] = new Worker(score, strength, i, isDead);
         }
         List<List<Field>> fields = new ArrayList<>();
         int rowNum = 0;
@@ -69,7 +70,7 @@ public class Main {
             if(rowNum == 0) {
                 List<Field> zerothRow = fields.get(0);
                 for (int i = 0; i < split.length+2; i++) {
-                    Obstacle o = new Obstacle();
+                    Obstacle o = new Obstacle(i, 0);
                     zerothRow.add(o);
                     if(i != 0) {
                         Field prevWall = zerothRow.get(i - 1);
@@ -82,23 +83,28 @@ public class Main {
             List<Field> prevRow = fields.get(rowNum - 1);
             currRow = new ArrayList<>();
             fields.add(currRow);
-            Obstacle obstacle = new Obstacle(); //implicit fal a sor elejen
+            Obstacle obstacle = new Obstacle(0, rowNum); //implicit fal a sor elejen
             obstacle.setNeighbor(Direction.UP, prevRow.get(0));
             prevRow.get(0).setNeighbor(Direction.DOWN, obstacle);
             currRow.add(obstacle);
             Field f = obstacle;
-            for (int i = 0; i < split.length; i++) {
+            int i;
+            for (i = 0; i < split.length; i++) {
                 String fieldDesc = split[i];
-                f = fieldFromInput(fieldDesc);
+                f = fieldFromInput(fieldDesc, i+1, rowNum);
                 if(f == null) {
                     System.out.println("Error initializing fields, wrong field description: " + fieldDesc);
                     return;
                 }
                 currRow.add(f);
-                if(i >= prevRow.size()) { //TODO: normalisan megoldani nem kerul be az uj szomszed row sehova, normalisan megoldani
-                    Field obs = new Obstacle();
+                if(i >= prevRow.size()) {
+                    Field obs = new Obstacle(i+1, rowNum-1);
                     f.setNeighbor(Direction.UP, obs);
                     obs.setNeighbor(Direction.DOWN, f);
+                    Field prevLast = prevRow.get(prevRow.size() - 1);
+                    prevRow.add(obs);
+                    prevLast.setNeighbor(Direction.RIGHT, obs);
+                    obs.setNeighbor(Direction.LEFT, prevLast);
                 } else {
                     Field uNeighbor = prevRow.get(i);
                     f.setNeighbor(Direction.UP, uNeighbor);
@@ -109,14 +115,16 @@ public class Main {
                 lNeighbor.setNeighbor(Direction.RIGHT, f);
                 f.setNeighbor(Direction.LEFT, lNeighbor);
             }
-            obstacle = new Obstacle(); //implicit fal a sor vegen
+            obstacle = new Obstacle(i, rowNum); //implicit fal a sor vegen
             obstacle.setNeighbor(Direction.LEFT, f);
             f.setNeighbor(Direction.RIGHT, obstacle);
+            rowNum++;
         }
         List<Field> closingRow = new ArrayList<>();
         fields.add(closingRow);
-        for (Field field : currRow) {
-            Obstacle o = new Obstacle();
+        for (int i = 0; i < currRow.size(); i++) {
+            Field field = currRow.get(i);
+            Obstacle o = new Obstacle(i, rowNum);
             closingRow.add(o);
             o.setNeighbor(Direction.UP, field);
             field.setNeighbor(Direction.DOWN, o);
@@ -233,7 +241,7 @@ public class Main {
      * @param desc A mezot leiro szoveg
      * @return Az input altal leirt mezo
      */
-    private static Field fieldFromInput(String desc) {
+    private static Field fieldFromInput(String desc, int x, int y) {
         Pattern p = Pattern.compile("^(?<fieldtype>H|(H(?<hid>\\d+)(?<state>[H_]))|(S(?<sid>\\d+)(?<onoff>[NF]))|P|O|_)(?<effect>[HON])(?<contained>(W(?<wid>\\d+))|B)?");
         Matcher matcher = p.matcher(desc);
         if(matcher.matches()) {
@@ -250,19 +258,20 @@ public class Main {
                 return null;
             }
             if(fieldtype.equals("H"))
-                f = new Hole();
+                f = new Hole(x, y);
             else if(fieldtype.equals("P"))
-                f = new BoxPlace();
+                f = new BoxPlace(x, y);
             else if(fieldtype.equals("O"))
-                f = new Obstacle();
+                f = new Obstacle(x, y);
             else if(fieldtype.equals("_"))
-                f = new Floor();
+                f = new Floor(x, y);
             else if(fieldtype.charAt(0) == 'H') {
                 int id = Integer.parseInt(matcher.group("hid"));
                 if(_dummyHiddenHoleCache.containsKey(id)) {
                     f = _dummyHiddenHoleCache.get(id);
+                    ((HiddenHole) f).setCoords(x, y);
                 } else {
-                    f = new HiddenHole();
+                    f = new HiddenHole(x, y, id);
                     _lonelyHiddenHoleCache.put(id, (HiddenHole) f);
                 }
                 String state = matcher.group("state");
@@ -271,10 +280,10 @@ public class Main {
             } else {
                 int id = Integer.parseInt(matcher.group("sid"));
                 if(_lonelyHiddenHoleCache.containsKey(id))
-                    f = new Switch(_lonelyHiddenHoleCache.get(id));
+                    f = new Switch(_lonelyHiddenHoleCache.get(id), x, y, id);
                 else {
-                    HiddenHole dummyHH = new HiddenHole();
-                    f = new Switch(dummyHH);
+                    HiddenHole dummyHH = new HiddenHole(-1, -1, id);
+                    f = new Switch(dummyHH, x, y, id);
                     _dummyHiddenHoleCache.put(id, dummyHH);
                 }
                 String onoff = matcher.group("onoff");

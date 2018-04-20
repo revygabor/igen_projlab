@@ -3,7 +3,8 @@
  * majd kiveszi a jatekbol.
  */
 public class Hole extends Field {
-    public Hole() {
+    public Hole(int x, int y) {
+        super(x, y);
     }
 
     /**
