@@ -1,0 +1,4 @@
+Worker-Box-BoxPlace_map.txt
+W0
+0R
+W0

@@ -15,4 +15,14 @@ public class Nothing extends FieldEffect {
     public int getFrictionCoefficient() {
         return frictionCoefficient;
     }
+
+
+    /**
+     * A semmi effekt rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return A semmi effekt rovid (par betus) leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return "N";
+    }
 }

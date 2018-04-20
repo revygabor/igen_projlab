@@ -83,6 +83,22 @@ public abstract class Field {
      * A mezo hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
      * @return A mezo hosszu leirasa
      */
-    abstract public String getLongDescs();
+    abstract public String getLongDesc();
+
+    /**
+     * A mezo X poziciojat adja meg
+     * @return X pozicio
+     */
+    public int getXPos() {//TODO
+        return 0;
+    }
+
+    /**
+     * A mezo Y poziciojat adja meg
+     * @return Y pozicio
+     */
+    public int getYPos() {//TODO
+        return 0;
+    }
 
 }

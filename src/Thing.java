@@ -72,4 +72,16 @@ public abstract class Thing {
      */
     public abstract void die();
 
+    /**
+     * Valamilyen Thing rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return Valamilyen Thing rovid (par betus) leirasa
+     */
+    public abstract String getShortDesc();
+
+    /**
+     * Valamilyen Thing hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return valamilyen Thing hosszu leirasa
+     */
+    public abstract String getLongDesc();
+
 }

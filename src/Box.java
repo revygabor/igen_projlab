@@ -93,6 +93,16 @@ public class Box extends Thing {
     public void die() {
     }
 
+    @Override
+    public String getShortDesc() {
+        return "B";
+    }
+
+    @Override
+    public String getLongDesc() {
+        return "Box";
+    }
+
     /**
      * Visszaadja, hogy a ladat lehetseges-e meg mozgatni.
      * @return a lada mozgathato-e meg

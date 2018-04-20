@@ -14,4 +14,14 @@ public class Oil extends FieldEffect {
     public int getFrictionCoefficient() {
         return frictionCoefficient;
     }
+
+
+    /**
+     * Az olaj effekt rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return Az olaj rovid leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return "O";
+    }
 }

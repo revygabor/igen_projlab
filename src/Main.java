@@ -1,5 +1,3 @@
-import com.oracle.deploy.update.UpdateCheck;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -167,7 +165,7 @@ public class Main {
      * @return A mezot leiro string
      */
     private static String getFieldState(int x, int y) {
-        return Warehouse.getInstance().getFields().get(x).get(y).getLongDescs();
+        return Warehouse.getInstance().getFields().get(x).get(y).getLongDesc();
     }
 
     /**

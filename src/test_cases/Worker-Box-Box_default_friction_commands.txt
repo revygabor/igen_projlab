@@ -1,0 +1,4 @@
+Worker-Box-Box_default_friction_map.txt
+S
+0R
+S

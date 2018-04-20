@@ -23,4 +23,22 @@ public class Hole extends Field {
 
         return true;
     }
+
+    /**
+     * A lyuk rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return A lyuk rovid (par betus) leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return null;//TODO
+    }
+
+    /**
+     * A lyuk hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return A lyuk hosszu leirasa
+     */
+    @Override
+    public String getLongDesc() {
+        return null;//TODO
+    }
 }

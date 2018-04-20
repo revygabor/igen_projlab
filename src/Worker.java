@@ -1,8 +1,18 @@
-public class Worker extends Thing {
+public class Worker extends Thing {//TODO: id, isALive, die
     /**
      * a munkas altal osszegyujtott pontszam
      */
     private int score = 0;
+
+    /**
+     * a munkas sorszama
+     */
+    private int id;
+
+    /**
+     * el -e a munkas?
+     */
+    private boolean isAlive;
 
     int strength;
     public int getStrength() {
@@ -10,13 +20,11 @@ public class Worker extends Thing {
     }
     public static final int  DEFAULT_STRENGTH = 10;
 
-    public Worker(int score, int strength) {
+    public Worker(int score, int strength/*, int id, boolean isAlive*/) { //TODO: id, isAlive
         this.score = score;
         this.strength = strength;
-    }
-
-    public Worker() {
-        this(0, DEFAULT_STRENGTH);
+        //this.id = id;
+        //this.isAlive = isAlive
     }
 
     /**
@@ -97,6 +105,16 @@ public class Worker extends Thing {
         Warehouse.getInstance().decreaseLivingWorkers();
     }
 
+    @Override
+    public String getShortDesc() {
+        return "W" + id;
+    }
+
+    @Override
+    public String getLongDesc() {
+        return "Worker " + id;
+    }
+
     /**
      * A munkas mozogni probal a megadott iranyba.
      * Mozgaslanc kezdete, igy nincs visszateresi erteke.
@@ -122,5 +140,15 @@ public class Worker extends Thing {
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public String toString() {
+        return isAlive ? field.getXPos() + " " + field.getYPos() + " " + score + " " + strength : "X";
+    }
+
+
+    public boolean isAlive() {
+        return isAlive;
     }
 }

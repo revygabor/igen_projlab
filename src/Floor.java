@@ -35,4 +35,24 @@ public class Floor extends Field {
 
         return moveAccepted;
     }
+
+
+    /**
+     * A padlo rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return A padlo rovid (par betus) leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return "_" + friction.getShortDesc() + containedThing.getShortDesc();
+    }
+
+
+    /**
+     * A padlo hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return A padlo hosszu leirasa
+     */
+    @Override
+    public String getLongDesc() {
+        return "Floor: " + containedThing.getLongDesc();
+    }
 }

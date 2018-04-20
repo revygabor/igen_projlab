@@ -1,0 +1,5 @@
+Worker-Box-Switch_map.txt
+0R
+S
+0R
+S

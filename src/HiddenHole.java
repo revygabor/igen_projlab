@@ -7,6 +7,7 @@ public class HiddenHole extends Field {
     private Floor floor = new Floor();
     private Hole hole = new Hole();
     private Field activeComponent;
+    private int id;//TODO: konstruktorba beerakni
 
     public HiddenHole() {
         activeComponent = floor;
@@ -73,5 +74,24 @@ public class HiddenHole extends Field {
         boolean moveAccepted = activeComponent.moveContainedThing(d, f);
 
         return moveAccepted;
+    }
+
+
+    /**
+     * A rejtett lyuk rovid leirasat adja meg, amit a teljes jatekallapot leirasakor hasznalunk
+     * @return A rejtett lyuk rovid (par betus) leirasa
+     */
+    @Override
+    public String getShortDesc() {
+        return "H" + id + activeComponent.getShortDesc();
+    }
+
+    /**
+     * A rejtett lyuk hosszu leirasat adja meg, amit a mezo allapotanak lekerdezesekor hasznalunk
+     * @return A rejtett lyuk hosszu leirasa
+     */
+    @Override
+    public String getLongDesc() {
+        return "Hidden Hole: " + activeComponent.getLongDesc();
     }
 }

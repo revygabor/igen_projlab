@@ -1,0 +1,4 @@
+Worker-Worker-HiddenHole(active Hole)_map.txt
+0R
+W1
+S
