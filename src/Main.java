@@ -129,6 +129,8 @@ public class Main {
             o.setNeighbor(Direction.UP, field);
             field.setNeighbor(Direction.DOWN, o);
         }
+
+        Warehouse.getInstance().init(workers.length, fields);
     }
 
     /**
