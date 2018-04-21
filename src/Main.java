@@ -61,7 +61,7 @@ public class Main {
             boolean isDead = split[2 * i].equals("X");
             int score = isDead ? -1 : Integer.parseInt(split[2 * i]);
             int strength = Integer.parseInt(split[2 * i + 1]);
-            workers[i] = new Worker(score, strength, i, isDead);
+            workers[i] = new Worker(score, strength, i, !isDead);
         }
 
         //palya letrehozasa
@@ -191,7 +191,7 @@ public class Main {
     private static String getGameState() {
         StringBuilder res = new StringBuilder("");
         for (Worker w : workers) {
-            res.append(w.getScore()).append(' ').append(w.getStrength()).append(' ');
+            res.append(w.isAlive() ?  w.getScore() : 'X').append(' ').append(w.getStrength()).append(' ');
         }
         res.append('\n');
         List<List<Field>> fields = Warehouse.getInstance().getFields();
