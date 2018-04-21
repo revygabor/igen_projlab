@@ -50,16 +50,21 @@ public class Main {
      * @throws IOException A file olvasasa kozben hiba tortent
      */
     private static void readInputFile(String path) throws IOException {
+        //file beolvasasa soronkent
         BufferedReader file = new BufferedReader(new FileReader(path));
         String line = file.readLine();
+
+        //elso sor - munkasok adatai szokozzel elvalasztva
         String[] split = line.split(" ");
         workers = new Worker[split.length / 2];
         for(int i = 0; i<workers.length; i++) {
             boolean isDead = split[2 * i].equals("X");
             int score = isDead ? -1 : Integer.parseInt(split[2 * i]);
             int strength = Integer.parseInt(split[2 * i + 1]);
-            workers[i] = new Worker(score, strength, i, isDead);
+            workers[i] = new Worker(score, strength, i, !isDead);
         }
+
+        //palya letrehozasa
         List<List<Field>> fields = new ArrayList<>();
         int rowNum = 0;
         List<Field> currRow = new ArrayList<>();
@@ -118,6 +123,7 @@ public class Main {
             obstacle = new Obstacle(i, rowNum); //implicit fal a sor vegen
             obstacle.setNeighbor(Direction.LEFT, f);
             f.setNeighbor(Direction.RIGHT, obstacle);
+            currRow.add(obstacle);
             rowNum++;
         }
         List<Field> closingRow = new ArrayList<>();
@@ -185,7 +191,7 @@ public class Main {
     private static String getGameState() {
         StringBuilder res = new StringBuilder("");
         for (Worker w : workers) {
-            res.append(w.getScore()).append(' ').append(w.getStrength()).append(' ');
+            res.append(w.isAlive() ?  w.getScore() : 'X').append(' ').append(w.getStrength()).append(' ');
         }
         res.append('\n');
         List<List<Field>> fields = Warehouse.getInstance().getFields();
