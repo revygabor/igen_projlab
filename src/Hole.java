@@ -31,7 +31,12 @@ public class Hole extends Field {
      */
     @Override
     public String getShortDesc() {
-        return "H" + friction.getShortDesc();
+        String desc = "H" + friction.getShortDesc();
+
+        if(containedThing !=null)
+            desc += containedThing.getShortDesc();
+
+        return desc;
     }
 
     /**
@@ -40,6 +45,11 @@ public class Hole extends Field {
      */
     @Override
     public String getLongDesc() {
-        return "Hole";
+        String desc = "Hole";
+
+        if(containedThing!=null)
+            desc += ": " + containedThing.getLongDesc();
+
+        return desc;
     }
 }
