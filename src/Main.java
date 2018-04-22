@@ -191,7 +191,7 @@ public class Main {
     private static String getGameState() {
         StringBuilder res = new StringBuilder("");
         for (Worker w : workers) {
-            res.append(w.isAlive() ?  w.getScore() : 'X').append(' ').append(w.getStrength()).append(' ');
+            res.append(w.isAlive() ? String.valueOf(w.getScore()) : "X").append(' ').append(w.getStrength()).append(' ');
         }
         res.append('\n');
         List<List<Field>> fields = Warehouse.getInstance().getFields();
