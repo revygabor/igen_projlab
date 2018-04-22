@@ -34,10 +34,12 @@ public class Switch extends Field {
             return true;
         }
 
+        Thing tmp = containedThing; // ha elhagyja meg ismernunk kell
+
         boolean moveAccepted = t.pushOtherThing(containedThing, d, f);
 
         if(moveAccepted) {
-            containedThing.enterOrLeaveSwitch(this); // a rajta levo elhagyja a Switch-et
+            tmp.enterOrLeaveSwitch(this); // a rajta levo elhagyja a Switch-et
             containedThing = t;
 
             if(t != null)
