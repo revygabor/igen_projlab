@@ -103,6 +103,7 @@ public class Worker extends Thing {
     @Override
     public void die() {
         Warehouse.getInstance().decreaseLivingWorkers();
+        isAlive = false;
     }
 
     @Override
@@ -121,7 +122,7 @@ public class Worker extends Thing {
      * @param d a mozgas iranya
      */
     public boolean move(Direction d) {
-        return field.moveContainedThing(d, strength);
+        return field.moveContainedThing(d, 0);
     }
 
     /**
