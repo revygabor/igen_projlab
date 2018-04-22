@@ -29,19 +29,19 @@ public class Switch extends Field {
             containedThing = t;
 
             if(t != null)
-                t.enterOrLeaveSwitch(this);
+                t.enterOrLeaveSwitch(this);  // az erkezo ralep a Switch-re
 
             return true;
         }
 
-        Field n = this.neighbor.get(d);
         boolean moveAccepted = t.pushOtherThing(containedThing, d, f);
 
         if(moveAccepted) {
+            containedThing.enterOrLeaveSwitch(this); // a rajta levo elhagyja a Switch-et
             containedThing = t;
 
             if(t != null)
-                t.enterOrLeaveSwitch(this);
+                t.enterOrLeaveSwitch(this); // az erkezo ralep a Switch-re
         }
 
         return moveAccepted;
