@@ -21,6 +21,7 @@ public class Main {
             String out = execute(line);
             if (out.equals("END")) newGame();
             else System.out.println(out);
+            System.out.flush();
         }
     }
 
