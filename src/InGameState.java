@@ -1,5 +1,4 @@
 import javafx.event.EventHandler;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -23,7 +22,7 @@ public class InGameState extends AppState {
     }
 
     @Override
-    public void Draw(GraphicsContext g) {
+    public void Draw() {
 
     }
 

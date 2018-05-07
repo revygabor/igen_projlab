@@ -1,5 +1,4 @@
 import javafx.event.EventHandler;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -11,7 +10,7 @@ public abstract class AppState {
         this.window = window;
     }
 
-    public abstract void Draw(GraphicsContext g);
+    public abstract void Draw();
     public abstract EventHandler<MouseEvent> getClickHandler();
     public abstract EventHandler<KeyEvent> getKeyPressedHandler();
 }

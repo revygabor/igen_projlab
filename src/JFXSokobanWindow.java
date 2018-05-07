@@ -1,16 +1,10 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.Collection;
-import java.util.prefs.AbstractPreferences;
 
 public class JFXSokobanWindow extends Application {
 
@@ -41,11 +35,13 @@ public class JFXSokobanWindow extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        setAppState(new MenuState(this));
     }
 
     void setAppState(AppState newState) {
         appState = newState;
-        appState.Draw(graphicsContext);
+        appState.Draw();
         mainCanvas.setOnMouseClicked(appState.getClickHandler());
         scene.setOnKeyPressed(appState.getKeyPressedHandler());
     }
