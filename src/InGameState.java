@@ -17,7 +17,7 @@ public class InGameState extends AppState {
         }
     };
 
-    public InGameState(JFXSokobanWindow window) {
+    public InGameState(String mapFilePath, int playerNumber, JFXSokobanWindow window) {
         super(window);
     }
 

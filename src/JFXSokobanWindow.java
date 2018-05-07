@@ -25,8 +25,8 @@ public class JFXSokobanWindow extends Application {
         Group root = new Group();
         root.getChildren().add(mainCanvas);
 
-        mainCanvas.setHeight(500);
-        mainCanvas.setWidth(500);
+        mainCanvas.setHeight(768);
+        mainCanvas.setWidth(1024);
 
         graphicsContext.setFill(Color.BLUE);
         graphicsContext.fillRect(0,0, 100,100);
@@ -34,6 +34,7 @@ public class JFXSokobanWindow extends Application {
         scene = new Scene(root);
 
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         setAppState(new MenuState(this));

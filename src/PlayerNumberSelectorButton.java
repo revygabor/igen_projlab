@@ -4,10 +4,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class PlayerNumberSelectorButton {
-    private static final Font SELECTED_FONT = new Font("Times New Roman", 22);
-    private static final Font UNSELECTED_FONT = new Font("Bernard MT Condensed", 16);
+    private static final Font SELECTED_FONT = new Font("Times New Roman", 35);
+    private static final Font UNSELECTED_FONT = new Font("Bernard MT Condensed", 28);
     private static final Paint[] COLORS = new Paint[] {
             Color.CYAN,
             Color.RED,
@@ -39,6 +40,7 @@ public class PlayerNumberSelectorButton {
     public void draw() {
         GraphicsContext g = window.getGraphics();
         g.setTextBaseline(VPos.TOP);
+        g.setTextAlign(TextAlignment.LEFT);
         if(selected) {
             g.setFont(SELECTED_FONT);
         } else {

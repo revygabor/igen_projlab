@@ -3,11 +3,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class DifficultySelectorButton {
 
-    public static final Font SELECTED_FONT = new Font("Bernard MT Condensed", 22);
-    public static final Font UNSELECTED_FONT = new Font("Times New Roman", 16);
+    public static final Font SELECTED_FONT = new Font("Bernard MT Condensed", 35);
+    public static final Font UNSELECTED_FONT = new Font("Times New Roman", 28);
 
     private boolean selected = false;
 
@@ -33,6 +34,7 @@ public class DifficultySelectorButton {
     public void draw() {
         GraphicsContext g = window.getGraphics();
         g.setTextBaseline(VPos.TOP);
+        g.setTextAlign(TextAlignment.LEFT);
         if(selected) {
             g.setFont(SELECTED_FONT);
             g.setFill(Color.GREY);
@@ -45,6 +47,6 @@ public class DifficultySelectorButton {
     }
 
     public Rectangle getBoundingRect() {
-        return new Rectangle(xPos, yPos, 100, 30);
+        return new Rectangle(xPos, yPos, 100, 40);
     }
 }
