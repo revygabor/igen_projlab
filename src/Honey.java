@@ -36,6 +36,6 @@ public class Honey extends FieldEffect {
 
     @Override
     public void draw(Field field) {
-        honeyDrawer.draw(this, field);
+        honeyDrawer.Draw(this, field);
     }
 }

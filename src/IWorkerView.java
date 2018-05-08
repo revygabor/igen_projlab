@@ -9,5 +9,5 @@ public interface IWorkerView {
      * @param w kirajzolando munkas
      * @param f mezo, amin a munkas van
      */
-    void draw(Worker w, Field f);
+    void Draw(Worker w, Field f);
 }

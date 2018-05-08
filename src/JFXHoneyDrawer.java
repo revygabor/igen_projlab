@@ -14,7 +14,7 @@ public class JFXHoneyDrawer implements IHoneyDrawer {
      * @param f mezo, amin a mez van
      */
     @Override
-    public void draw(Honey h, Field f) {
+    public void Draw(Honey h, Field f) {
 
     }
 }

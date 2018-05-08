@@ -13,7 +13,7 @@ public class JFXSwitchView implements ISwitchView {
      * @param s kirajzolando kapcsolo
      */
     @Override
-    public void draw(Switch s) {
+    public void Draw(Switch s) {
 
     }
 }

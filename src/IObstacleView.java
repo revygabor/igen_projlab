@@ -8,5 +8,5 @@ public interface IObstacleView {
      * Akadaly kirajzolasa.
      * @param o kirajzolando akadaly
      */
-    void draw(Obstacle o);
+    void Draw(Obstacle o);
 }

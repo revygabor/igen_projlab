@@ -9,5 +9,5 @@ public interface IHoneyDrawer {
      * @param h kirajzolando mez
      * @param f mezo, amin a mez van
      */
-    void draw(Honey h, Field f);
+    void Draw(Honey h, Field f);
 }

@@ -8,5 +8,5 @@ public interface ISwitchView {
      * Kapcsolo kirajzolasa.
      * @param s kirajzolando kapcsolo
      */
-    void draw(Switch s);
+    void Draw(Switch s);
 }

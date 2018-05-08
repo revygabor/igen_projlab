@@ -14,7 +14,7 @@ public class JFXWorkerView implements IWorkerView {
      * @param f mezo, amin a munkas van
      */
     @Override
-    public void draw(Worker w, Field f) {
+    public void Draw(Worker w, Field f) {
 
     }
 }

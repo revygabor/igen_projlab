@@ -9,5 +9,5 @@ public interface IOilDrawer {
      * @param o kirajzolando olaj
      * @param f mezo, amin az olaj van
      */
-    void draw(Oil o, Field f);
+    void Draw(Oil o, Field f);
 }

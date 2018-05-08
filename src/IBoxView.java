@@ -9,5 +9,5 @@ public interface IBoxView {
      * @param b kirjzolando doboz
      * @param f a mezo, amelyiken a doboz van
      */
-    void draw(Box b, Field f);
+    void Draw(Box b, Field f);
 }

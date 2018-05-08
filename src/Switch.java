@@ -97,7 +97,7 @@ public class Switch extends Field {
 
     @Override
     public void draw() {
-        switchView.draw(this);
+        switchView.Draw(this);
         friction.draw(this);
 
         if(containedThing!=null)

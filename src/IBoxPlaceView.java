@@ -8,5 +8,5 @@ public interface IBoxPlaceView {
      * Dobozhelyek kirajzolasa.
      * @param bp kirajzolando dobozhely
      */
-    void draw(BoxPlace bp);
+    void Draw(BoxPlace bp);
 }

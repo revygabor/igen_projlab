@@ -13,7 +13,7 @@ public class JFXBoxPlaceView implements IBoxPlaceView {
      * @param bp kirajzolando dobozhely
      */
     @Override
-    public void draw(BoxPlace bp) {
+    public void Draw(BoxPlace bp) {
 
     }
 }

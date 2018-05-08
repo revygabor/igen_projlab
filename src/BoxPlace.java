@@ -94,7 +94,7 @@ public class BoxPlace extends Field {
 
     @Override
     public void draw() {
-        boxPlaceView.draw(this);
+        boxPlaceView.Draw(this);
         friction.draw(this);
 
         if(containedThing!=null)

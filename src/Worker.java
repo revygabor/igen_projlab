@@ -126,7 +126,7 @@ public class Worker extends Thing {
 
     @Override
     public void draw() {
-        workerView.draw(this, field);
+        workerView.Draw(this, field);
     }
 
     /**

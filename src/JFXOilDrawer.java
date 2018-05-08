@@ -14,7 +14,7 @@ public class JFXOilDrawer implements IOilDrawer {
      * @param f mezo, amin az olaj van
      */
     @Override
-    public void draw(Oil o, Field f) {
+    public void Draw(Oil o, Field f) {
 
     }
 }

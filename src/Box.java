@@ -114,7 +114,7 @@ public class Box extends Thing {
 
     @Override
     public void draw() {
-        boxView.draw(this, field);
+        boxView.Draw(this, field);
     }
 
     /**
