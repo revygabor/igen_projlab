@@ -36,6 +36,6 @@ public class Oil extends FieldEffect {
 
     @Override
     public void draw(Field field) {
-        oilDrawer.Draw(this, field);
+        oilDrawer.draw(this, field);
     }
 }

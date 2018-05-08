@@ -46,6 +46,6 @@ public class Obstacle extends Field {
 
     @Override
     public void draw() {
-        obstacleView.Draw(this);
+        obstacleView.draw(this);
     }
 }

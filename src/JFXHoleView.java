@@ -13,7 +13,7 @@ public class JFXHoleView implements IHoleView {
     /**
      * A rajzolashoz hasznalt kep.
      */
-    private static final Image img = new Image("res" + File.separator + "hole.jpg");
+    private static final Image img = new Image("res" + File.separator + "hole.png");
 
     public JFXHoleView(JFXSokobanWindow jfxSokobanWindow) {
         this.jfxSokobanWindow = jfxSokobanWindow;
@@ -24,7 +24,7 @@ public class JFXHoleView implements IHoleView {
      * @param h kirajzolando lyuk
      */
     @Override
-    public void Draw(Hole h) {
+    public void draw(Hole h) {
         int x = InGameState.TILES_START_X + h.getXPos()*InGameState.TILE_WIDTH;
         int y = InGameState.TILES_START_Y + h.getYPos()*InGameState.TILE_HEIGHT;
         jfxSokobanWindow.getGraphics().drawImage(img, x, y, InGameState.TILE_WIDTH, InGameState.TILE_HEIGHT);

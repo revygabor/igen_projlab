@@ -75,7 +75,7 @@ public class Floor extends Field {
 
     @Override
     public void draw() {
-        floorView.Draw(this);
+        floorView.draw(this);
         friction.draw(this);
 
         if(containedThing!=null)

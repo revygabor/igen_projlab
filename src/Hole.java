@@ -62,7 +62,7 @@ public class Hole extends Field {
 
     @Override
     public void draw() {
-        holeView.Draw(this);
+        holeView.draw(this);
         friction.draw(this);
 
         if(containedThing!=null)

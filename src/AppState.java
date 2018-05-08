@@ -10,7 +10,7 @@ public abstract class AppState {
         this.window = window;
     }
 
-    public abstract void Draw();
+    public abstract void draw();
     public abstract EventHandler<MouseEvent> getClickHandler();
     public abstract EventHandler<KeyEvent> getKeyPressedHandler();
 }

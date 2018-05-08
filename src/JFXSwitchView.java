@@ -13,12 +13,12 @@ public class JFXSwitchView implements ISwitchView {
     /**
      * A rajzolashoz hasznalt kep, ha a switch zarva van.
      */
-    private static final Image closedImg = new Image("res" + File.separator + "switch_closed.jpg");
+    private static final Image closedImg = new Image("res" + File.separator + "switch_closed.png");
 
     /**
      * A rajzolashoz hasznalt kep, ha a switch nyitva van.
      */
-    private static final Image openImg = new Image("res" + File.separator + "switche_open.jpg");
+    private static final Image openImg = new Image("res" + File.separator + "switch_open.png");
 
     public JFXSwitchView(JFXSokobanWindow jfxSokobanWindow) {
         this.jfxSokobanWindow = jfxSokobanWindow;
@@ -29,7 +29,7 @@ public class JFXSwitchView implements ISwitchView {
      * @param s kirajzolando kapcsolo
      */
     @Override
-    public void Draw(Switch s) {
+    public void draw(Switch s) {
         int x = InGameState.TILES_START_X + s.getXPos()*InGameState.TILE_WIDTH;
         int y = InGameState.TILES_START_Y + s.getYPos()*InGameState.TILE_HEIGHT;
         jfxSokobanWindow.getGraphics().drawImage(s.isOn() ? closedImg : openImg, x, y, InGameState.TILE_WIDTH, InGameState.TILE_HEIGHT);

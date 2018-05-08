@@ -20,7 +20,7 @@ public class JFXBoxPlaceView implements IBoxPlaceView {
      * @param bp kirajzolando dobozhely
      */
     @Override
-    public void Draw(BoxPlace bp) {
+    public void draw(BoxPlace bp) {
         int x = InGameState.TILES_START_X + bp.getXPos()*InGameState.TILE_WIDTH;
         int y = InGameState.TILES_START_Y + bp.getYPos()*InGameState.TILE_HEIGHT;
         jfxSokobanWindow.getGraphics().drawImage(img, x, y, InGameState.TILE_WIDTH, InGameState.TILE_HEIGHT);

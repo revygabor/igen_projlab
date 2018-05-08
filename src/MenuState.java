@@ -52,7 +52,7 @@ public class MenuState extends AppState {
                     playerNumSelector.setSelected(true);
                 }
             }
-            MenuState.this.Draw();
+            MenuState.this.draw();
             if(newGameRect.contains(event.getX(), event.getY()))
                 startGame();
         }
@@ -85,7 +85,7 @@ public class MenuState extends AppState {
     }
 
     @Override
-    public void Draw() {
+    public void draw() {
         GraphicsContext g = window.getGraphics();
         g.clearRect(0, 0, 2000, 2000);
         g.setFill(Color.BLACK);

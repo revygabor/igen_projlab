@@ -97,10 +97,14 @@ public class Switch extends Field {
 
     @Override
     public void draw() {
-        switchView.Draw(this);
+        switchView.draw(this);
         friction.draw(this);
 
         if(containedThing!=null)
             containedThing.draw();
+    }
+
+    public boolean isOn() {
+        return isOn;
     }
 }

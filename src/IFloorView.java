@@ -8,5 +8,5 @@ public interface IFloorView {
      * Padlo kirajzolasa
      * @param f kirajzolando padlo
      */
-    void Draw(Floor f);
+    void draw(Floor f);
 }

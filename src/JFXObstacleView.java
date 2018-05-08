@@ -24,7 +24,7 @@ public class JFXObstacleView implements IObstacleView {
      * @param o kirajzolando akadaly
      */
     @Override
-    public void Draw(Obstacle o) {
+    public void draw(Obstacle o) {
         int x = InGameState.TILES_START_X + o.getXPos()*InGameState.TILE_WIDTH;
         int y = InGameState.TILES_START_Y + o.getYPos()*InGameState.TILE_HEIGHT;
         jfxSokobanWindow.getGraphics().drawImage(img, x, y, InGameState.TILE_WIDTH, InGameState.TILE_HEIGHT);

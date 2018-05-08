@@ -110,19 +110,22 @@ public class InGameState extends AppState {
         public void handle(KeyEvent event) {
             for (int i = 0; i < keyMapMove.size(); i++) {
                 Map<KeyCode, Direction> playerKeyMap = keyMapMove.get(i);
-                if(playerKeyMap.containsKey(event.getCode()) && workers.length <= i+1) {
+                if(playerKeyMap.containsKey(event.getCode()) && i < workers.length) {
                     workers[i].move(playerKeyMap.get(event.getCode()));
+                    draw();
                     return;
                 }
             }
             int playerId = keyMapOil.indexOf(event.getCode());
             if(playerId >= 0) {
                 workers[playerId].dropOil();
+                draw();
                 return;
             }
             playerId = keyMapHoney.indexOf(event.getCode());
             if(playerId >= 0) {
                 workers[playerId].dropHoney();
+                draw();
             }
         }
     };
@@ -139,7 +142,7 @@ public class InGameState extends AppState {
     }
 
     @Override
-    public void Draw() {
+    public void draw() {
         GraphicsContext g = window.getGraphics();
         g.clearRect(0,0,2000,2000);
         g.setFill(Color.BLACK);
@@ -191,7 +194,7 @@ public class InGameState extends AppState {
             boolean isDead = split[2 * i].equals("X");
             int score = isDead ? -1 : Integer.parseInt(split[2 * i]);
             int strength = Integer.parseInt(split[2 * i + 1]);
-            workers[i] = new Worker(score, strength, i, !isDead);
+            workers[i] = new Worker(score, strength, i, !isDead, workerView, honeyDrawer, oilDrawer);
         }
 
         //palya letrehozasa
@@ -205,7 +208,7 @@ public class InGameState extends AppState {
             if(rowNum == 0) {
                 List<Field> zerothRow = fields.get(0);
                 for (int i = 0; i < split.length+2; i++) {
-                    Obstacle o = new Obstacle(i, 0);
+                    Obstacle o = new Obstacle(i, 0, obstacleView);
                     zerothRow.add(o);
                     if(i != 0) {
                         Field prevWall = zerothRow.get(i - 1);
@@ -218,7 +221,7 @@ public class InGameState extends AppState {
             List<Field> prevRow = fields.get(rowNum - 1);
             currRow = new ArrayList<>();
             fields.add(currRow);
-            Obstacle obstacle = new Obstacle(0, rowNum); //implicit fal a sor elejen
+            Obstacle obstacle = new Obstacle(0, rowNum, obstacleView); //implicit fal a sor elejen
             obstacle.setNeighbor(Direction.UP, prevRow.get(0));
             prevRow.get(0).setNeighbor(Direction.DOWN, obstacle);
             currRow.add(obstacle);
@@ -233,7 +236,7 @@ public class InGameState extends AppState {
                 }
                 currRow.add(f);
                 if(i >= prevRow.size()) {
-                    Field obs = new Obstacle(i+1, rowNum-1);
+                    Field obs = new Obstacle(i+1, rowNum-1, obstacleView);
                     f.setNeighbor(Direction.UP, obs);
                     obs.setNeighbor(Direction.DOWN, f);
                     Field prevLast = prevRow.get(prevRow.size() - 1);
@@ -241,7 +244,7 @@ public class InGameState extends AppState {
                     prevLast.setNeighbor(Direction.RIGHT, obs);
                     obs.setNeighbor(Direction.LEFT, prevLast);
                 } else {
-                    Field uNeighbor = prevRow.get(i);
+                    Field uNeighbor = prevRow.get(i+1);
                     f.setNeighbor(Direction.UP, uNeighbor);
                     uNeighbor.setNeighbor(Direction.DOWN, f);
                 }
@@ -250,7 +253,7 @@ public class InGameState extends AppState {
                 lNeighbor.setNeighbor(Direction.RIGHT, f);
                 f.setNeighbor(Direction.LEFT, lNeighbor);
             }
-            obstacle = new Obstacle(i, rowNum); //implicit fal a sor vegen
+            obstacle = new Obstacle(i+1, rowNum, obstacleView); //implicit fal a sor vegen
             obstacle.setNeighbor(Direction.LEFT, f);
             f.setNeighbor(Direction.RIGHT, obstacle);
             currRow.add(obstacle);
@@ -260,7 +263,7 @@ public class InGameState extends AppState {
         fields.add(closingRow);
         for (int i = 0; i < currRow.size(); i++) {
             Field field = currRow.get(i);
-            Obstacle o = new Obstacle(i, rowNum);
+            Obstacle o = new Obstacle(i, rowNum, obstacleView);
             closingRow.add(o);
             o.setNeighbor(Direction.UP, field);
             field.setNeighbor(Direction.DOWN, o);
@@ -280,6 +283,15 @@ public class InGameState extends AppState {
      * helyett a dummyt frissitjuk.
      */
     private Map<Integer, HiddenHole> _dummyHiddenHoleCache = new HashMap<>();
+    private IBoxPlaceView boxPlaceView = new JFXBoxPlaceView(window);
+    private IBoxView boxView = new JFXBoxView(window);
+    private IFloorView floorView = new JFXFloorView(window);
+    private IHoleView holeView = new JFXHoleView(window);
+    private IHoneyDrawer honeyDrawer = new JFXHoneyDrawer(window);
+    private IObstacleView obstacleView = new JFXObstacleView(window);
+    private IOilDrawer oilDrawer = new JFXOilDrawer(window);
+    private ISwitchView switchView = new JFXSwitchView(window);
+    private IWorkerView workerView = new JFXWorkerView(window);
     /**
      * A bemeneti nyelvnek megfelelo, mezot leiro string bemenetbol kesziti el a megfelelo allapotu es tipusu mezot
      * @param desc A mezot leiro szoveg
@@ -302,20 +314,20 @@ public class InGameState extends AppState {
                 return null;
             }
             if(fieldtype.equals("H"))
-                f = new Hole(x, y);
+                f = new Hole(x, y, holeView);
             else if(fieldtype.equals("P"))
-                f = new BoxPlace(x, y);
+                f = new BoxPlace(x, y, boxPlaceView);
             else if(fieldtype.equals("O"))
-                f = new Obstacle(x, y);
+                f = new Obstacle(x, y, obstacleView);
             else if(fieldtype.equals("_"))
-                f = new Floor(x, y);
+                f = new Floor(x, y, floorView);
             else if(fieldtype.charAt(0) == 'H') {
                 int id = Integer.parseInt(matcher.group("hid"));
                 if(_dummyHiddenHoleCache.containsKey(id)) {
                     f = _dummyHiddenHoleCache.get(id);
                     ((HiddenHole) f).setCoords(x, y);
                 } else {
-                    f = new HiddenHole(x, y, id);
+                    f = new HiddenHole(x, y, id, holeView, floorView);
                     _lonelyHiddenHoleCache.put(id, (HiddenHole) f);
                 }
                 String state = matcher.group("state");
@@ -324,10 +336,10 @@ public class InGameState extends AppState {
             } else {
                 int id = Integer.parseInt(matcher.group("sid"));
                 if(_lonelyHiddenHoleCache.containsKey(id))
-                    f = new Switch(_lonelyHiddenHoleCache.get(id), x, y, id);
+                    f = new Switch(_lonelyHiddenHoleCache.get(id), x, y, id, switchView);
                 else {
-                    HiddenHole dummyHH = new HiddenHole(-1, -1, id);
-                    f = new Switch(dummyHH, x, y, id);
+                    HiddenHole dummyHH = new HiddenHole(-1, -1, id, holeView, floorView);
+                    f = new Switch(dummyHH, x, y, id, switchView);
                     _dummyHiddenHoleCache.put(id, dummyHH);
                 }
                 String onoff = matcher.group("onoff");
@@ -335,12 +347,12 @@ public class InGameState extends AppState {
 //                    ((Switch)f).changeSwitch(); //nem kell mert a doboz rakeruleskor beallitja, persze ez gond is lehet mert az onoff igy nem csinal semmit
             }
 
-            FieldEffect eff = effect.equals("H") ? new Honey() : effect.equals("O") ? new Oil() : new Nothing();
+            FieldEffect eff = effect.equals("H") ? new Honey(honeyDrawer) : effect.equals("O") ? new Oil(oilDrawer) : new Nothing();
             f.apply(eff);
 
             if(contained != null) {
                 if(contained.equals("B"))
-                    new Box().moveToField(f, null, 10000);
+                    new Box(boxView).moveToField(f, null, 10000);
                 else {
                     int id = Integer.parseInt(matcher.group("wid"));
                     if(id < workers.length)

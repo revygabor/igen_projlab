@@ -42,7 +42,7 @@ public class JFXSokobanWindow extends Application {
 
     void setAppState(AppState newState) {
         appState = newState;
-        appState.Draw();
+        appState.draw();
         mainCanvas.setOnMouseClicked(appState.getClickHandler());
         scene.setOnKeyPressed(appState.getKeyPressedHandler());
     }

@@ -43,8 +43,10 @@ public class Warehouse {
     }
 
     public void draw() {
-        for (List<Field> field : fields) {
-            //TODO: draw
+        for (List<Field> row : fields) {
+            for (Field field : row) {
+                field.draw();
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
+import java.io.File;
+
 public enum Difficulty {
-    EASY("", "Könnyű"),
-    MEDIUM("", "Közepes"),
-    HARD("", "Nehéz");
+    EASY("maps" + File.separator + "easy_map.txt", "Könnyű"),
+    MEDIUM("maps" + File.separator + "normal_map.txt", "Közepes"),
+    HARD("maps" + File.separator + "hard_map.txt", "Nehéz");
 
     private String mapFilePath;
 
