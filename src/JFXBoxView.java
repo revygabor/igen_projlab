@@ -14,7 +14,7 @@ public class JFXBoxView implements IBoxView {
      * @param f a mezo, amelyiken a doboz van
      */
     @Override
-    public void Draw(Box b, Field f) {
+    public void draw(Box b, Field f) {
 
     }
 }

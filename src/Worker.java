@@ -14,17 +14,25 @@ public class Worker extends Thing {
      */
     private boolean isAlive;
 
-    int strength;
-    public int getStrength() {
-        return strength;
-    }
     public static final int  DEFAULT_STRENGTH = 10;
 
-    public Worker(int score, int strength, int id, boolean isAlive) {
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IWorkerView workerView;
+
+    IOilDrawer oilDrawer;
+    IHoneyDrawer honeyDrawer;
+
+    public Worker(int score, int strength, int id, boolean isAlive,
+                  IWorkerView workerView, IHoneyDrawer honeyDrawer, IOilDrawer oilDrawer) {
         this.score = score;
         this.strength = strength;
         this.id = id;
         this.isAlive = isAlive;
+        this.workerView = workerView;
+        this.honeyDrawer = honeyDrawer;
+        this.oilDrawer = oilDrawer;
     }
 
     /**
@@ -116,6 +124,11 @@ public class Worker extends Thing {
         return "Worker " + id;
     }
 
+    @Override
+    public void draw() {
+        workerView.draw(this, field);
+    }
+
     /**
      * A munkas mozogni probal a megadott iranyba.
      * Mozgaslanc kezdete, igy nincs visszateresi erteke.
@@ -129,14 +142,14 @@ public class Worker extends Thing {
      * A mezőre amin áll olajat helyez el a munkás
      */
     public void dropOil(){
-        field.apply(new Oil());
+        field.apply(new Oil(oilDrawer));
     }
 
     /**
      * A mezőre amin áll mézet helyez el a munkás
      */
     public void dropHoney(){
-        field.apply(new Honey());
+        field.apply(new Honey(honeyDrawer));
     }
 
     public int getScore() {
@@ -151,5 +164,10 @@ public class Worker extends Thing {
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    int strength;
+    public int getStrength() {
+        return strength;
     }
 }

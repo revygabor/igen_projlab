@@ -8,5 +8,5 @@ public interface IHoleView {
      * Lyuk kirajzolasa.
      * @param h kirajzolando lyuk
      */
-    void Draw(Hole h);
+    void draw(Hole h);
 }

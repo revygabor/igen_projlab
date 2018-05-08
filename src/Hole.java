@@ -3,8 +3,15 @@
  * majd kiveszi a jatekbol.
  */
 public class Hole extends Field {
-    public Hole(int x, int y) {
+
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IHoleView holeView;
+
+    public Hole(int x, int y, IHoleView holeView) {
         super(x, y);
+        this.holeView = holeView;
     }
 
     /**
@@ -51,5 +58,14 @@ public class Hole extends Field {
             desc += ": " + containedThing.getLongDesc();
 
         return desc;
+    }
+
+    @Override
+    public void draw() {
+        holeView.draw(this);
+        friction.draw(this);
+
+        if(containedThing!=null)
+            containedThing.draw();
     }
 }

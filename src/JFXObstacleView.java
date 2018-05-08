@@ -13,7 +13,7 @@ public class JFXObstacleView implements IObstacleView {
      * @param o kirajzolando akadaly
      */
     @Override
-    public void Draw(Obstacle o) {
+    public void draw(Obstacle o) {
 
     }
 }

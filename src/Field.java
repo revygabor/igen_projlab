@@ -105,4 +105,9 @@ public abstract class Field {
         return y;
     }
 
+    /**
+     * Ez a fv. hivja meg az adott tipusu interface-en a rajzolast.
+     */
+    public abstract void draw();
+
 }

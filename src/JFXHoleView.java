@@ -13,7 +13,7 @@ public class JFXHoleView implements IHoleView {
      * @param h kirajzolando lyuk
      */
     @Override
-    public void Draw(Hole h) {
+    public void draw(Hole h) {
 
     }
 }

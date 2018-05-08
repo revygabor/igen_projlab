@@ -8,6 +8,15 @@ public class Oil extends FieldEffect {
     private int frictionCoefficient = 2;
 
     /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IOilDrawer oilDrawer;
+
+    public Oil(IOilDrawer oilDrawer) {
+        this.oilDrawer = oilDrawer;
+    }
+
+    /**
      * @return A surlódási együttható értékét
      */
     @Override
@@ -23,5 +32,10 @@ public class Oil extends FieldEffect {
     @Override
     public String getShortDesc() {
         return "O";
+    }
+
+    @Override
+    public void draw(Field field) {
+        oilDrawer.draw(this, field);
     }
 }

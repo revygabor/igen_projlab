@@ -13,7 +13,7 @@ public class JFXFloorView implements IFloorView {
      * @param f kirajzolando padlo
      */
     @Override
-    public void Draw(Floor f) {
+    public void draw(Floor f) {
 
     }
 }

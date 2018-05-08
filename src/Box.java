@@ -5,9 +5,18 @@ public class Box extends Thing {
     Thing pushedBy;
 
     /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IBoxView boxView;
+
+    /**
      * A Box tömege
      */
     private int mass = 1;
+
+    public Box(IBoxView boxView) {
+        this.boxView = boxView;
+    }
 
     /**
      * Pontszerzes jelzese.
@@ -101,6 +110,11 @@ public class Box extends Thing {
     @Override
     public String getLongDesc() {
         return "Box";
+    }
+
+    @Override
+    public void draw() {
+        boxView.draw(this, field);
     }
 
     /**
