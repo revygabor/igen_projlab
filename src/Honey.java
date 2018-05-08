@@ -8,6 +8,15 @@ public class Honey extends FieldEffect {
     private int frictionCoefficient = 10;
 
     /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IHoneyDrawer honeyDrawer;
+
+    public Honey(IHoneyDrawer honeyDrawer) {
+        this.honeyDrawer = honeyDrawer;
+    }
+
+    /**
      * @return A surlódási együttható értékét
      */
     @Override
@@ -23,5 +32,10 @@ public class Honey extends FieldEffect {
     @Override
     public String getShortDesc() {
         return "H";
+    }
+
+    @Override
+    public void draw(Field field) {
+        honeyDrawer.Draw(this, field);
     }
 }

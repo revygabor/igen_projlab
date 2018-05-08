@@ -9,11 +9,11 @@ public class HiddenHole extends Field {
     private Field activeComponent;
     private int id;
 
-    public HiddenHole(int x, int y, int id) {
+    public HiddenHole(int x, int y, int id, IHoleView holeView, IFloorView floorView) {
         super(x, y);
         this.id = id;
-        floor = new Floor(x, y);
-        hole = new Hole(x, y);
+        floor = new Floor(x, y, floorView);
+        hole = new Hole(x, y, holeView);
         activeComponent = floor;
     }
 
@@ -110,5 +110,10 @@ public class HiddenHole extends Field {
     @Override
     public String getLongDesc() {
         return "Hidden Hole: " + activeComponent.getLongDesc();
+    }
+
+    @Override
+    public void draw() {
+        activeComponent.draw();
     }
 }

@@ -9,10 +9,16 @@ public class Switch extends Field {
     private int id;
     private boolean isOn = false;
 
-    public Switch(HiddenHole hiddenHole, int x, int y, int id) {
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    ISwitchView switchView;
+
+    public Switch(HiddenHole hiddenHole, int x, int y, int id, ISwitchView switchView) {
         super(x, y);
         this.hiddenHole = hiddenHole;
         this.id = id;
+        this.switchView = switchView;
     }
 
     /**
@@ -89,5 +95,12 @@ public class Switch extends Field {
         return desc;
     }
 
-    public boolean isOn() {return isOn; }
+    @Override
+    public void draw() {
+        switchView.Draw(this);
+        friction.draw(this);
+
+        if(containedThing!=null)
+            containedThing.draw();
+    }
 }

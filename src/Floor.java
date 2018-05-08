@@ -4,8 +4,14 @@
  */
 public class Floor extends Field {
 
-    public Floor(int x, int y) {
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IFloorView floorView;
+
+    public Floor(int x, int y, IFloorView floorView) {
         super(x, y);
+        this.floorView = floorView;
     }
 
     /**
@@ -65,5 +71,14 @@ public class Floor extends Field {
             desc += ": " + containedThing.getLongDesc();
 
         return desc;
+    }
+
+    @Override
+    public void draw() {
+        floorView.Draw(this);
+        friction.draw(this);
+
+        if(containedThing!=null)
+            containedThing.draw();
     }
 }

@@ -11,4 +11,9 @@ public abstract class FieldEffect {
      * @return Az effekt rovid (par betus) leirasa
      */
     public abstract String getShortDesc();
+
+    /**
+     * Ez rajzolja ki az adott effektet.
+     */
+    public abstract void draw(Field field);
 }

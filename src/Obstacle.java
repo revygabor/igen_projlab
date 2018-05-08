@@ -3,8 +3,15 @@
  * Semmit sem enged magara lepni.
  */
 public class Obstacle extends Field {
-    public Obstacle(int x, int y) {
+
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IObstacleView obstacleView;
+
+    public Obstacle(int x, int y, IObstacleView obstacleView) {
         super(x, y);
+        this.obstacleView = obstacleView;
     }
 
     /**
@@ -35,5 +42,10 @@ public class Obstacle extends Field {
     @Override
     public String getLongDesc() {
         return "Obstacle";
+    }
+
+    @Override
+    public void draw() {
+        obstacleView.Draw(this);
     }
 }

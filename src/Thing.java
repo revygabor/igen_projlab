@@ -84,4 +84,10 @@ public abstract class Thing {
      */
     public abstract String getLongDesc();
 
+
+    /**
+     * Ez rajzolja ki az adott dolgot.
+     */
+    public abstract void draw();
+
 }

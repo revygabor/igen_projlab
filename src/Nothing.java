@@ -25,4 +25,7 @@ public class Nothing extends FieldEffect {
     public String getShortDesc() {
         return "N";
     }
+
+    @Override
+    public void draw(Field field) {}
 }

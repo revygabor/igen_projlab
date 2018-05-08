@@ -1,11 +1,17 @@
 /**
  * Az a mezo, ahova a munkasoknak a ladakat kell tolniuk.
  */
-public class BoxPlace extends Floor {
+public class BoxPlace extends Field {
     private boolean boxIsHere = false;
 
-    public BoxPlace(int x, int y) {
+    /**
+     * A nezet, ami ki fogja rajzolni.
+     */
+    IBoxPlaceView boxPlaceView;
+
+    public BoxPlace(int x, int y, IBoxPlaceView boxPlaceView) {
         super(x, y);
+        this.boxPlaceView = boxPlaceView;
     }
 
     /**
@@ -84,5 +90,14 @@ public class BoxPlace extends Floor {
             desc += ": " + containedThing.getLongDesc();
 
         return desc;
+    }
+
+    @Override
+    public void draw() {
+        boxPlaceView.Draw(this);
+        friction.draw(this);
+
+        if(containedThing!=null)
+            containedThing.draw();
     }
 }
