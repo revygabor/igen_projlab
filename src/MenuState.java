@@ -108,7 +108,6 @@ public class MenuState extends AppState {
         g.setFill(Color.WHITE);
         g.setFont(NEW_GAME_FONT);
         g.fillText("Új játék", textX, textY);
-
         g.setFill(Color.WHITE);
         g.setTextAlign(TextAlignment.LEFT);
         g.setTextBaseline(VPos.TOP);

@@ -10,6 +10,14 @@ public class Worker extends Thing {
     private int id;
 
     /**
+     * A munkas sorszamat adja vissza.
+     * @return A munkas sorszama
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
      * el -e a munkas?
      */
     private boolean isAlive;

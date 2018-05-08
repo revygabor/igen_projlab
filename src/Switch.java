@@ -88,4 +88,6 @@ public class Switch extends Field {
 
         return desc;
     }
+
+    public boolean isOn() {return isOn; }
 }

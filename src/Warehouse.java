@@ -41,4 +41,10 @@ public class Warehouse {
     public List<List<Field>> getFields() {
         return fields;
     }
+
+    public void draw() {
+        for (List<Field> field : fields) {
+            //TODO: draw
+        }
+    }
 }
