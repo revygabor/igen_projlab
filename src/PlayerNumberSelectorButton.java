@@ -51,6 +51,6 @@ public class PlayerNumberSelectorButton {
     }
 
     public Rectangle getBoundingRect() {
-        return new Rectangle(xPos, yPos, 20, 20);
+        return new Rectangle(xPos, yPos, 20, 30);
     }
 }

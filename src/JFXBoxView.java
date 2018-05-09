@@ -26,8 +26,8 @@ public class JFXBoxView implements IBoxView {
      */
     @Override
     public void draw(Box b, Field f) {
-        int x = InGameState.TILES_START_X + InGameState.TILE_WIDTH/10 + f.getXPos()*InGameState.TILE_WIDTH;
-        int y = InGameState.TILES_START_Y + InGameState.TILE_HEIGHT/10 + f.getYPos()*InGameState.TILE_HEIGHT;
-        jfxSokobanWindow.getGraphics().drawImage(img, x, y, InGameState.TILE_WIDTH*8/10, InGameState.TILE_HEIGHT*8/10);
+        int x = InGameState.TILES_START_X + InGameState.TILE_WIDTH /10 + f.getXPos()*InGameState.TILE_WIDTH;
+        int y = InGameState.TILES_START_Y + InGameState.TILE_HEIGHT /10 + f.getYPos()*InGameState.TILE_HEIGHT;
+        jfxSokobanWindow.getGraphics().drawImage(img, x, y, InGameState.TILE_WIDTH *8/10, InGameState.TILE_HEIGHT *8/10);
     }
 }

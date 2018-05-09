@@ -24,9 +24,9 @@ public class InGameState extends AppState {
     private Worker[] workers;
     public static final int TILES_START_X = 50;
     public static final int TILES_START_Y = 50;
-    public static final int TILE_HEIGHT = 100;
-    public static final int TILE_WIDTH = 100;
-    public static final int PLAYER_STATS_START_X = 200;
+    public static final int TILE_HEIGHT = 70;
+    public static final int TILE_WIDTH = 70;
+    public static final int PLAYER_STATS_START_X = 720;
     public static final int PLAYER_STATS_START_Y = 50;
     public static final int PLAYER_STATS_DY = 100;
 
@@ -110,7 +110,7 @@ public class InGameState extends AppState {
         public void handle(KeyEvent event) {
             for (int i = 0; i < keyMapMove.size(); i++) {
                 Map<KeyCode, Direction> playerKeyMap = keyMapMove.get(i);
-                if(playerKeyMap.containsKey(event.getCode()) && i < workers.length) {
+                if(playerKeyMap.containsKey(event.getCode()) && i < workers.length && workers[i].isAlive()) {
                     workers[i].move(playerKeyMap.get(event.getCode()));
                     draw();
                     return;

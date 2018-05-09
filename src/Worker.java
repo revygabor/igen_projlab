@@ -29,7 +29,14 @@ public class Worker extends Thing {
      */
     IWorkerView workerView;
 
+    /**
+     * A munkás által lerakott olaj kirajzolásához használt rajzoló objektum.
+     */
     IOilDrawer oilDrawer;
+
+    /**
+     * A munkás által lerakott méz kirajzolásához használt rajzoló objektum.
+     */
     IHoneyDrawer honeyDrawer;
 
     public Worker(int score, int strength, int id, boolean isAlive,
@@ -160,6 +167,10 @@ public class Worker extends Thing {
         field.apply(new Honey(honeyDrawer));
     }
 
+    /**
+     * A munkáshoz tartozó játékos pontszámát adja vissza.
+     * @return A munkás pontszáma
+     */
     public int getScore() {
         return score;
     }
@@ -169,12 +180,20 @@ public class Worker extends Thing {
         return isAlive ? field.getXPos() + " " + field.getYPos() + " " + score + " " + strength : "X";
     }
 
-
+    /**
+     * Visszaadja, hogy a munkás él-e még.
+     * @return A munkás él-e még.
+     */
     public boolean isAlive() {
         return isAlive;
     }
 
     int strength;
+
+    /**
+     * A munkás erejének értékét adja vissza.
+     * @return A munkás ereje
+     */
     public int getStrength() {
         return strength;
     }
