@@ -5,6 +5,7 @@ public class Warehouse {
     private static Warehouse instance = new Warehouse();
     private int livingWorkers = 0;
     private List<List<Field>> fields;
+    private List<Box> boxes;
 
     /**
      * Csokkenti az elo munkasokat szamlalo mezo erteket.
@@ -17,9 +18,10 @@ public class Warehouse {
     /**
      * Inicializalo metodus a raktar objektumainak letrehozasara.
      */
-    public void init(int startingWorkerCount, List<List<Field>> fields) {
+    public void init(int startingWorkerCount, List<List<Field>> fields, List<Box> boxes) {
         this.fields = fields;
         livingWorkers = startingWorkerCount;
+        this.boxes = boxes;
     }
 
     /**

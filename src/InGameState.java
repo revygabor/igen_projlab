@@ -24,8 +24,8 @@ public class InGameState extends AppState {
     private Worker[] workers;
     public static final int TILES_START_X = 50;
     public static final int TILES_START_Y = 50;
-    public static final int TILE_HEIGHT = 70;
-    public static final int TILE_WIDTH = 70;
+    public static final int TILE_HEIGHT = 50;
+    public static final int TILE_WIDTH = 50;
     public static final int PLAYER_STATS_START_X = 720;
     public static final int PLAYER_STATS_START_Y = 50;
     public static final int PLAYER_STATS_DY = 100;
@@ -178,12 +178,15 @@ public class InGameState extends AppState {
         return keyPressedHandler;
     }
 
+
+    private List<Box> boxes=new ArrayList<>();
     /***
      * Beolvassa a parameterkent megadott eleresi uton talalhato bemeneti file-t
      * @param path A file eleresi utja
      * @throws IOException A file olvasasa kozben hiba tortent
      */
     private void readInputFile(String path) throws IOException {
+        boxes.clear();
         //file beolvasasa soronkent
         BufferedReader file = new BufferedReader(new FileReader(path));
         String line = file.readLine();
@@ -269,7 +272,7 @@ public class InGameState extends AppState {
             field.setNeighbor(Direction.DOWN, o);
         }
 
-        Warehouse.getInstance().init(workers.length, fields);
+        Warehouse.getInstance().init(workers.length, fields, new ArrayList<>(boxes));
     }
 
     /**
@@ -351,8 +354,11 @@ public class InGameState extends AppState {
             f.apply(eff);
 
             if(contained != null) {
-                if(contained.equals("B"))
-                    new Box(boxView).moveToField(f, null, 10000);
+                if(contained.equals("B")) {
+                    Box box = new Box(boxView);
+                    box.moveToField(f, null, 10000);
+                    boxes.add(box);
+                }
                 else {
                     int id = Integer.parseInt(matcher.group("wid"));
                     if(id < workers.length)
