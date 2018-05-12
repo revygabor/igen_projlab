@@ -29,18 +29,14 @@ public class Warehouse {
     /**
      * Megvizsgalja, hogy a jatek a vegere ert-e (pl. a livingWorkers attributum erteke 1, vagy mar nincs tobb mozgathato Box).
      */
-    public void checkEndGame() {
-        if(livingWorkers<=1) endGame();
-        if(boxes.size() == 0) endGame();
+    public boolean checkEndGame() {
+        if(livingWorkers<=1) return true;
+        if(boxes.size() == 0) return true;
 
         for (Box b:boxes) {
-            if(b.stillMoveable()) return;
+            if(b.stillMoveable()) return false;
         }
-        endGame();
-    }
-
-    private void endGame(){
-        return;
+        return true;
     }
 
     /**

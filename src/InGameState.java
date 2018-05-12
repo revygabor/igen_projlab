@@ -1,6 +1,7 @@
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -10,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -134,8 +136,9 @@ public class InGameState extends AppState {
                 Map<KeyCode, Direction> playerKeyMap = keyMapMove.get(i);
                 if(playerKeyMap.containsKey(event.getCode()) && i < workers.length && workers[i].isAlive()) {
                     workers[i].move(playerKeyMap.get(event.getCode()));
+                    if(Warehouse.getInstance().checkEndGame())
+                        calcWinner();
                     draw();
-                    Warehouse.getInstance().checkEndGame();
                     return;
                 }
             }
@@ -152,6 +155,14 @@ public class InGameState extends AppState {
             }
         }
     };
+
+    private void calcWinner() {
+        for (int i = 0; i < workers.length; i++) {
+            Worker worker = workers[i];
+            if (worker.isAlive() && (winner == -1 || worker.getScore() > workers[winner].getScore()))
+                winner = i;
+        }
+    }
 
     /**
      * A fájl beolvasásakor keletkezett hibaüzenet, ha volt
@@ -174,6 +185,20 @@ public class InGameState extends AppState {
         }
     }
 
+    private int winner = -1;
+
+    /**
+     * A játék végén a nyertes kirajzolásához hasznalhato kepek tombje. Minden jatekoshoz egy kep.
+     */
+    private static final Image[] workerImgs = new Image[]{
+            new Image("res" + File.separator + "worker_0.png"),
+            new Image("res" + File.separator + "worker_1.png"),
+            new Image("res" + File.separator + "worker_2.png"),
+            new Image("res" + File.separator + "worker_3.png"),
+            new Image("res" + File.separator + "worker_4.png"),
+            new Image("res" + File.separator + "worker_5.png")
+    };
+
     @Override
     public void draw() {
         GraphicsContext g = window.getGraphics();
@@ -181,12 +206,23 @@ public class InGameState extends AppState {
         g.setFill(Color.BLACK);
         g.fillRect(0,0,2000,2000);
         if(errorReadingFile != null) {
+            g.setTextAlign(TextAlignment.LEFT);
+            g.setTextBaseline(VPos.TOP);
             g.setFill(Color.RED);
             g.setFont(new Font("Arial", 25));
             g.fillText(errorReadingFile, 0, 0);
         }
         else {
-            Warehouse.getInstance().draw();
+            if(winner == -1)
+                Warehouse.getInstance().draw();
+            else {
+                g.setTextAlign(TextAlignment.LEFT);
+                g.setTextBaseline(VPos.TOP);
+                g.setFill(JFXWorkerView.PLAYER_COLORS[winner]);
+                g.setFont(new Font("Arial", 25));
+                g.fillText(winner + ". Játékos nyert! Gratu, jár egy nagy taps...", 50, 50);
+                g.drawImage(workerImgs[winner], 100, 100, 500, 500);
+            }
         }
         g.setFill(Color.gray(0.2));
         g.fillRect(menuButtonRect.getX(), menuButtonRect.getY(), menuButtonRect.getWidth(), menuButtonRect.getHeight());

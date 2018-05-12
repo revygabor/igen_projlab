@@ -33,7 +33,7 @@ public class JFXWorkerView implements IWorkerView {
         this.jfxSokobanWindow = jfxSokobanWindow;
     }
 
-    private static final Paint[] PLAYER_COLORS = new Paint[] {
+    public static final Paint[] PLAYER_COLORS = new Paint[] {
             Color.BLUE,
             Color.RED,
             Color.GREEN,
