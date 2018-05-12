@@ -13,12 +13,20 @@ import java.io.File;
 
 public class MenuState extends AppState {
 
+    /**
+     * Nehézség kiválasztására használt gombok tömbje
+     */
     private DifficultySelectorButton[] diffSelectors = new DifficultySelectorButton[Difficulty.values().length];
+    /**
+     * Játékosok számának kiválasztására használt gombok tömbje
+     */
     private PlayerNumberSelectorButton[] playerNumSelectors = new PlayerNumberSelectorButton[6];
 
-    Difficulty selectedDifficulty = Difficulty.EASY;
-    int selectedPlayerNumbers = 2;
 
+    private Difficulty selectedDifficulty = Difficulty.EASY;
+    private int selectedPlayerNumbers = 2;
+
+    //Elrendezéshez haszált konstansok
     public static final int IMAGE_X = 0;
     public static final int IMAGE_Y = 200;
     Rectangle newGameRect = new Rectangle(720, 500, 200,100);

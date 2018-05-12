@@ -21,18 +21,26 @@ import java.util.regex.Pattern;
 
 public class InGameState extends AppState {
 
+    /**
+     * A játékban lévő (nem feltétlenül élő) munkásokat tartalmazó tömb
+     */
     private Worker[] workers;
+
+    //Elrendezéshez használt konstansok
     public static final int TILES_START_X = 50;
     public static final int TILES_START_Y = 50;
-    public static final int TILE_HEIGHT = 50;
-    public static final int TILE_WIDTH = 50;
+    public static final int TILE_HEIGHT = 70;
+    public static final int TILE_WIDTH = 70;
     public static final int PLAYER_STATS_START_X = 720;
     public static final int PLAYER_STATS_START_Y = 50;
     public static final int PLAYER_STATS_DY = 100;
 
-    private final Rectangle menuButtonRect = new Rectangle(720, 500, 200,100);
+    private final Rectangle menuButtonRect = new Rectangle(720, 640, 200,75);
     public static final Font MENU_BUTTON_FONT = new Font("Arial", 50);
 
+    /**
+     * Szótárak listája, amiben az i. szótár az i azonosítójú játékos mozgáshoz használt billentyű kiosztását tartalmazza
+     */
     private List<Map<KeyCode, Direction>> keyMapMove = new ArrayList<>(); {
         //player 0 - WASD
         HashMap<KeyCode, Direction> player0 = new HashMap<>();
@@ -78,6 +86,10 @@ public class InGameState extends AppState {
         keyMapMove.add(player5);
     }
 
+
+    /**
+     * Az egyes játékosokhoz tartozó, olaj lerakására használt billentyűk kódjának tömbje
+     */
     private List<KeyCode> keyMapOil = new ArrayList<>();
     {
         keyMapOil.add(KeyCode.Q);
@@ -87,6 +99,10 @@ public class InGameState extends AppState {
         keyMapOil.add(KeyCode.NUMPAD7);
         keyMapOil.add(KeyCode.F1);
     }
+
+    /**
+     * Az egyes játékosokhoz tartozó, méz lerakására használt billentyűk kódjának tömbje
+     */
     private List<KeyCode> keyMapHoney = new ArrayList<>();
     {
         keyMapHoney.add(KeyCode.E);
@@ -98,6 +114,9 @@ public class InGameState extends AppState {
     }
 
 
+    /**
+     * Kattintás kezelésére használt eseménykezelő objektum
+     */
     private EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -105,6 +124,9 @@ public class InGameState extends AppState {
                 window.setAppState(new MenuState(window));
         }
     };
+    /**
+     * Billentyűlenyomások kezelésére használt eseménykezelő objektum
+     */
     private EventHandler<KeyEvent> keyPressedHandler = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -130,7 +152,17 @@ public class InGameState extends AppState {
         }
     };
 
+    /**
+     * A fájl beolvasásakor keletkezett hibaüzenet, ha volt
+     */
     private String errorReadingFile = null;
+
+    /**
+     * Játék közbeni alkalmazás állapot konstruktora
+     * @param mapFilePath A kiválasztott pályát leíró fájl elérési útja
+     * @param playerNumber A játékosok száma
+     * @param window A játék megjelenítésére szolgáló ablak
+     */
     public InGameState(String mapFilePath, int playerNumber, JFXSokobanWindow window) {
         super(window);
         workers = new Worker[playerNumber];
