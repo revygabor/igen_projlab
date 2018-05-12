@@ -107,4 +107,10 @@ public class Switch extends Field {
     public boolean isOn() {
         return isOn;
     }
+
+    @Override
+    public boolean isInhibitable(Direction d) {
+        if(containedThing == null || !containedThing.isInhibitsField()) return true;
+        else return neighbor.get(d).isInhibitable(d);
+    }
 }

@@ -116,4 +116,9 @@ public class HiddenHole extends Field {
     public void draw() {
         activeComponent.draw();
     }
+
+    @Override
+    public boolean isInhibitable(Direction d) {
+        return activeComponent.isInhibitable(d);
+    }
 }

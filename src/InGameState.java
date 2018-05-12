@@ -135,6 +135,7 @@ public class InGameState extends AppState {
                 if(playerKeyMap.containsKey(event.getCode()) && i < workers.length && workers[i].isAlive()) {
                     workers[i].move(playerKeyMap.get(event.getCode()));
                     draw();
+                    Warehouse.getInstance().checkEndGame();
                     return;
                 }
             }

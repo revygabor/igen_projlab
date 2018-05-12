@@ -48,4 +48,9 @@ public class Obstacle extends Field {
     public void draw() {
         obstacleView.draw(this);
     }
+
+    @Override
+    public boolean isInhibitable(Direction d) {
+        return false;
+    }
 }

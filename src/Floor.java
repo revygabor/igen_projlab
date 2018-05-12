@@ -81,4 +81,10 @@ public class Floor extends Field {
         if(containedThing!=null)
             containedThing.draw();
     }
+
+    @Override
+    public boolean isInhibitable(Direction d) {
+        if(containedThing == null || !containedThing.isInhibitsField()) return true;
+        else return neighbor.get(d).isInhibitable(d);
+    }
 }
