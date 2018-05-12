@@ -31,11 +31,11 @@ public class InGameState extends AppState {
     public static final int TILES_START_Y = 50;
     public static final int TILE_HEIGHT = 70;
     public static final int TILE_WIDTH = 70;
-    public static final int PLAYER_STATS_START_X = 720;
+    public static final int PLAYER_STATS_START_X = 760;
     public static final int PLAYER_STATS_START_Y = 50;
     public static final int PLAYER_STATS_DY = 100;
 
-    private final Rectangle menuButtonRect = new Rectangle(720, 640, 200,75);
+    private final Rectangle menuButtonRect = new Rectangle(760, 640, 200,75);
     public static final Font MENU_BUTTON_FONT = new Font("Arial", 50);
 
     /**

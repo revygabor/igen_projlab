@@ -33,8 +33,7 @@ public class Warehouse {
         if(livingWorkers<=1) endGame();
         if(boxes.size() == 0) endGame();
 
-        for (Box b:boxes
-             ) {
+        for (Box b:boxes) {
             if(b.stillMoveable()) return;
         }
         endGame();
