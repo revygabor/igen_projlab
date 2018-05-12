@@ -100,4 +100,9 @@ public class BoxPlace extends Field {
         if(containedThing!=null)
             containedThing.draw();
     }
+
+    @Override
+    public boolean isInhibitable(Direction d) {
+        return !boxIsHere;
+    }
 }

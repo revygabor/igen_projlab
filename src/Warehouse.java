@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse {
@@ -28,6 +30,18 @@ public class Warehouse {
      * Megvizsgalja, hogy a jatek a vegere ert-e (pl. a livingWorkers attributum erteke 1, vagy mar nincs tobb mozgathato Box).
      */
     public void checkEndGame() {
+        if(livingWorkers<=1) endGame();
+        if(boxes.size() == 0) endGame();
+
+        for (Box b:boxes
+             ) {
+            if(b.stillMoveable()) return;
+        }
+        endGame();
+    }
+
+    private void endGame(){
+        return;
     }
 
     /**

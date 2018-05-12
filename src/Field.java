@@ -49,7 +49,7 @@ public abstract class Field {
      * aminek atadja a containedThing-et, jelezven, hogy a Thing,
      * szeretne odalepni. Visszateresi erteke jelzi, hogy
      * sikeres volt-e a mozgas.
-     * @param d amelyik iranyba el kell mozgatniű
+     * @param d amelyik iranyba el kell mozgatni
      * @param f a még rendelkezésre álló erő
      * @return sikeres -e a mozgatas
      */
@@ -110,4 +110,5 @@ public abstract class Field {
      */
     public abstract void draw();
 
+    public abstract boolean isInhibitable(Direction d);
 }

@@ -90,4 +90,6 @@ public abstract class Thing {
      */
     public abstract void draw();
 
+    public abstract boolean isInhibitsField();
+
 }

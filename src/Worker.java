@@ -197,4 +197,9 @@ public class Worker extends Thing {
     public int getStrength() {
         return strength;
     }
+
+    @Override
+    public boolean isInhibitsField() {
+        return false;
+    }
 }

@@ -122,6 +122,12 @@ public class Box extends Thing {
      * @return a lada mozgathato-e meg
      */
     public boolean stillMoveable() {
+        return ((field.isInhibitable(Direction.RIGHT) && field.isInhibitable(Direction.LEFT)) ||
+                (field.isInhibitable(Direction.DOWN) && field.isInhibitable(Direction.UP)));
+    }
+
+    @Override
+    public boolean isInhibitsField() {
         return true;
     }
 }
